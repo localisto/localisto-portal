@@ -1,0 +1,41 @@
+<%i = 0 %>
+<div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+
+        <% @images.each do |image| %>
+        <% if i == 0 %>
+        
+        <div class="active item"><%= image_tag image.image.url %>
+            <div class="carousel-caption">
+               <ul class="carousellist">
+                   
+                   <li><%=link_to edit_project_image_path(@project.id, image.id) do %><i class="icon-edit icon-white"></i>
+                    <% end %></li>
+                    <li><%= link_to project_image_path(@project.id, image.id), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="icon-white icon-trash"></i><% end %></li>
+                </ul>
+                </div>
+            </div>	
+            <% i = i + 1 %>
+
+            <% else %>
+            <div class="item"><%= image_tag image.image.url %>
+               <div class="carousel-caption">
+                   <ul class="carousellist">
+                       <li><%=link_to edit_project_image_path(@project.id, image.id) do %><i class="icon-edit icon-white"></i>
+                        <% end %></li>
+                        <li><%= link_to project_image_path(@project.id, image.id), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="icon-white icon-trash"></i><% end %></li>
+                        </ul>
+                    </div>
+                </div>	
+                <% i = i + 1 %>
+                <% end %>
+                <% end %>
+</div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            
+        </div>
+
+

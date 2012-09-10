@@ -1,0 +1,17 @@
+<%= form_for(@appuser) do |f| %>
+  <% if @appuser.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appuser.errors.count, "error") %> prohibited this appuser from being saved:</h2>
+
+      <ul>
+      <% @appuser.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

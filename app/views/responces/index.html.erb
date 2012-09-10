@@ -1,0 +1,45 @@
+<div class="span6">
+<h1>Reorder Questions</h1>
+
+<% if @question.qtype == '1' %>
+
+<ul class="sorlist" id="responces"> <% @responces.each do |responce| %>
+  <li id="responce_<%=responce.id%>"><span class="handle"><i class="icon-list"></i></span><%=responce.description%><%# link_to 'Show', project_responce_path(@project.id, responce.id) %></li>
+<% end %></ul>
+<% end %>
+
+<% if @question.qtype == '2' %>
+
+<ul class="sorlist" id="responces"> <% @responces.each do |responce| %>
+  <li id="responce_<%=responce.id%>"><span class="handle"><%= image_tag responce.image.url(:thumb) %><%# link_to 'Show', project_responce_path(@project.id, responce.id) %></li>
+<% end %></ul>
+<% end %>
+
+
+<script>
+
+$(document).ready(function(){
+$('#responces').sortable({
+axis: 'y',
+dropOnEmpty: false,
+handle: '.handle',
+cursor: 'crosshair',
+items: 'li',
+opacity: 0.4,
+scroll: true,
+update: function(){
+$.ajax({
+type: 'post',
+data: $('#responces').sortable('serialize'),
+dataType: 'script',
+complete: function(request){
+$('#responces').effect('highlight');
+},
+url: '/projects/<%=@question.id%>/responces/sort'})
+}
+});
+});
+</script>
+
+
+</div>

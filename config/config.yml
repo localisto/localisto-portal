@@ -1,0 +1,5 @@
+  # Fill in your AWS Access Key ID and Secret Access Key
+  # http://aws.amazon.com/security-credentials
+  access_key_id: AKIAJUNYXFCSWNS3P5MQ
+  secret_access_key: 7nUGX4veSeTIIgGGKm/4L/+mujQeBTWqKFxIVQhL
+  bucket: localisto-app

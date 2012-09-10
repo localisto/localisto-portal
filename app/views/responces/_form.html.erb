@@ -1,0 +1,51 @@
+<%= form_for ([@question,@responce]), :html => { :multipart => true } do |f| %>
+<%# form_for(@responce) do |f| %>
+  <% if @responce.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@responce.errors.count, "error") %> prohibited this responce from being saved:</h2>
+
+      <ul>
+      <% @responce.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  
+<% if @question.qtype.to_i == 1 %>
+  <div class="field">
+    <lable>Responce</lable><br />
+    <%= f.text_field :description %>
+  </div>
+<% end %>
+
+
+<% if @question.qtype.to_i == 2 %>
+<div class="field">
+    <%= f.file_field :image %>
+  </div>
+<% end %>
+
+
+<% if @question.qtype.to_i == 3 %>
+You cannot add a responce to a pairwise question using this portal
+<% end %>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  <div class="actions">
+    <%= f.submit :class=>'btn btn-primary' %>
+  </div>
+<% end %>

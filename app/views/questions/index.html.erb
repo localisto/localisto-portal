@@ -1,0 +1,31 @@
+<div class="span6">
+<h1>Reorder Questions</h1>
+<ul class="sorlist" id="questions"> <% @questions.each do |question| %>
+  <li id="question_<%=question.id%>"><span class="handle"><i class="icon-list"></i></span><%=question.description%><%= link_to 'Show', project_question_path(@project.id, question.id) %></li>
+<% end %></ul>
+
+<script>
+
+$(document).ready(function(){
+$('#questions').sortable({
+axis: 'y',
+dropOnEmpty: false,
+handle: '.handle',
+cursor: 'crosshair',
+items: 'li',
+opacity: 0.4,
+scroll: true,
+update: function(){
+$.ajax({
+type: 'post',
+data: $('#questions').sortable('serialize'),
+dataType: 'script',
+complete: function(request){
+$('#questions').effect('highlight');
+},
+url: '/projects/<%=@project.id%>/questions/sort'})
+}
+});
+});
+</script>
+</div>

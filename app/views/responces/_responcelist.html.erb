@@ -1,0 +1,49 @@
+
+<%if @question.qtype == '1' %>
+Responces are text
+<table class="table">
+  <tr>
+    <th>Description</th>
+    <th></th>
+
+  </tr>
+
+<% @responces.each do |responce| %>
+  <tr>
+    <td><%= responce.description %></td>
+    <td><%= link_to 'Show', question_responce_path(@question.id, responce.id) %></td>
+  </tr>
+<% end %>
+</table>
+
+<% elsif @question.qtype == '2' %>
+Responces are images 
+<table class="table">
+  <tr>
+    <th>Image</th>
+    <th>Description</th>
+    <th></th>
+
+  </tr>
+
+<% @responces.each do |responce| %>
+  <tr>
+  	<td><%= image_tag responce.image.url(:thumb) %></td
+    <td><%= responce.description %></td>
+    <td><%= link_to 'Show', question_responce_path(@question.id, responce.id) %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<% elsif @question.qtype == '3' %>
+Responces are not entered using this interface.
+<% end %>
+
+
+
+
+
+
+
+

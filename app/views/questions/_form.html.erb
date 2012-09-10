@@ -1,0 +1,106 @@
+<%= form_for ([@project, @question]), :html => { :multipart => true } do |f| %>
+<%# form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <style>
+
+
+.dshow {display: block;}
+.dhide {display: none}
+
+  </style>
+
+  <div class="field">
+    <%= f.label :qtype %>
+    <%= f.select(:qtype, options_for_select([['Image Prompt', 1], ['Text Prompt', 2], ['Pairwise', 3]],@question.qtype)) %>
+ </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+
+  <div id="qtype1" class="dhide">
+<div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+</div>
+  
+  <div id="qtype2" class="dhide">
+ 
+  </div>
+
+<div id="qtype3" class="dhide">
+  <div class="field">
+    <%= f.label :aoi_id %>
+    <%= f.number_field :aoi_id %>
+  </div>
+</div>
+  
+  <div class="actions">
+    <%= f.submit :class=>'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<script>
+$(document).ready(function() {
+      
+  loadval = $('#question_qtype :selected').val(); 
+    
+    if (loadval == 1) {
+      $("#qtype2").fadeOut("fast");
+      $("#qtype3").fadeOut("fast");
+      $("#qtype1").delay(400).fadeIn("slow");
+    }
+                                 
+       if (loadval == 2) {
+      $("#qtype1").fadeOut("fast");
+      $("#qtype3").fadeOut("fast");
+      $("#qtype2").delay(400).fadeIn("slow");
+       }
+                  
+     if (loadval == 3) {
+      $("#qtype1").fadeOut("fast");
+      $("#qtype2").fadeOut("fast");
+      $("#qtype3").delay(400).fadeIn("slow");
+     }
+      
+
+     $("#question_qtype").change(function() {
+        
+     choice_val = $("#question_qtype").val();
+
+      if (choice_val == 1) {
+      $("#qtype2").fadeOut("fast");
+      $("#qtype3").fadeOut("fast");
+      $("#qtype1").delay(400).fadeIn("slow");
+    }
+                                 
+       if (choice_val == 2) {
+      $("#qtype1").fadeOut("fast");
+      $("#qtype3").fadeOut("fast");
+      $("#qtype2").delay(400).fadeIn("slow");
+       }
+                  
+     if (choice_val == 3) {
+      $("#qtype1").fadeOut("fast");
+      $("#qtype2").fadeOut("fast");
+      $("#qtype3").delay(400).fadeIn("slow");
+     }
+       
+         });
+});
+</script>

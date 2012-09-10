@@ -1,0 +1,29 @@
+
+<ul class="sorlist" id="agencies"> <% @agencies.each do |agency| %>
+  <li id="agency_<%=agency.id%>"><span class="handle"><i class="icon-list"></i></span><%=agency.name%><%# link_to 'Show', project_question_path(@project.id, question.id) %></li>
+<% end %></ul>
+
+<script>
+
+$(document).ready(function(){
+$('#agencies').sortable({
+axis: 'y',
+dropOnEmpty: false,
+handle: '.handle',
+cursor: 'crosshair',
+items: 'li',
+opacity: 0.4,
+scroll: true,
+update: function(){
+$.ajax({
+type: 'post',
+data: $('#agencies').sortable('serialize'),
+dataType: 'script',
+complete: function(request){
+$('#agencies').effect('highlight');
+},
+url: '/agencies/sort'})
+}
+});
+});
+</script>

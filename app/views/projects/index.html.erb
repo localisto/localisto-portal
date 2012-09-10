@@ -1,0 +1,33 @@
+
+<div class="container">
+<div class="row">
+<div class="span12">
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Agency</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Display location</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.agency_id %></td>
+    <td><%= project.description %></td>
+    <td><%= project.location %></td>
+    <td><%= project.display_location %></td>
+    <td><%= link_to 'Show', agency_project_path(project.agency_id, project.id) %></td>
+    <td><%=link_to 'Edit', edit_agency_project_path(project.agency_id, project.id) %></td>
+    <td><%= link_to 'Destroy', agency_project_path(project.agency_id, project.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+</div></div></div>
+
+

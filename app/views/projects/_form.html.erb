@@ -1,0 +1,67 @@
+<%= form_for([@agency,@project]) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><% pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><% msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class=>'projdesc' %>
+  </div>
+
+ <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+   <div class="field">
+    <%= f.label :coordinates %>
+    <%= f.text_field :coordinates %>
+  </div>
+ 
+
+  <div class="field">
+    <%= f.label :meeting_starts %>
+    <%= f.datetime_select :meeting_starts, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year] %> 
+  </div>
+
+  
+  <div class="field">
+    <%= f.label :survey_closes%>
+    <%= f.datetime_select :survey_closes, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year]  %> 
+  </div>
+    
+  <div class="field">
+    <%= f.label :has_survey %>
+  <%= f.check_box :has_survey %>
+  </div>
+
+    <div class="field">
+    <%= f.label :fb_page_url %>
+  <%= f.text_field :fb_page_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :disabled %>
+  <%= f.check_box :disabled %>
+  </div>
+  <div class="field">
+
+    <%= f.submit :class=>'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,71 @@
+
+<div class="span6">
+
+
+
+<%= image_tag @project.image %>
+
+<h1><%= @project.title%></h1>
+  
+  <%= @agency.name %>
+  <br>	<br>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @project.location %>
+</p>
+
+<p>
+  <b>Coordinates:</b>
+  <%= @project.coordinates%>
+</p>
+
+<p>
+<b>Meeting Starts:</b>
+<%= l @project.meeting_starts, :format => :short %>
+</p>
+<p>
+
+<b>Survey Closes:</b>
+<%= l @project.survey_closes, :format => :short %>
+</p>
+
+<b>Project Has Survey</b>
+<%= @project.has_survey %>
+</p>
+
+<b>Url for Facebook</b>
+<%= @project.fb_page_url%>
+</p>
+
+<b>Disabled</b>
+<%= @project.disabled %>
+</p>
+
+
+
+
+</div>
+
+<div class="span6">
+
+<%  @images = @project.images.order('project_image.position ASC')%>
+ <%  @questions = @project.questions.order('question.position ASC') %>
+
+<%= render 'images/imagecarousel'  %>
+
+<%= render 'questions/questionlist' %>
+
+
+
+</div>
+
+
+
+<%# link_to 'Back', projects_path %>
+

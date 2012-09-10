@@ -1,0 +1,42 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require jquery.ui.all
+ */
+
+h1 {padding-bottom: 2px;}
+table {margin-top: 30px;}
+.modal {display: none;}
+textarea#project_description.projdesc {width: 500px; height: 140px}
+
+.back {margin-right: 30px;}
+
+
+#projshow #myCarousel {margin-top: 107px;}
+
+ul.carousellist {float: right; display: inline;}
+.carousellist li {  display: inline; padding-left: 10px; }
+.carousellist li a {color: white;}
+
+
+#project_survey_closes_1i, #project_meeting_starts_1i {width: 70px;}
+#project_survey_closes_2i, #project_meeting_starts_2i {width: 105px}
+#project_survey_closes_3i, #project_meeting_starts_3i {width: 50px}
+#project_survey_closes_4i, #project_meeting_starts_4i {width: 73px}
+#project_survey_closes_5i, #project_meeting_starts_5i {width: 50px}
+
+.handle:hover{cursor: move;}
+
+ul.sorlist li {list-style: none; margin-top: 10px;}
+.handle {margin-right: 10px}
+
+.breadcrumb li {padding-left: 15px;}

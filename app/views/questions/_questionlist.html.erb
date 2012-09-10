@@ -1,0 +1,20 @@
+
+<table class="table">
+  <tr>
+    <th>Prompt</th>
+    <th>Description</th>
+    <th></th>
+
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= qtyper(question.qtype) %></td>
+    <td><%= question.description %></td>
+    <td><%= link_to "Show", project_question_path(@project.id, question.id) %></td>
+  </tr>
+<% end %>
+</table>
+
+
+

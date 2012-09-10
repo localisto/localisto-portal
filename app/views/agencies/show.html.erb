@@ -1,0 +1,33 @@
+
+<div class="span12">
+    <h1><%= @agency.name %> </h1>
+
+  <p>
+    <b>Included by default:</b>
+    <%= @agency.included_by_default %>
+
+
+
+
+  <table class="table table-striped">
+    <tr>
+      <th>Projects</th>
+      <th></th>
+
+    </tr>
+
+    <%= render @agency.projects %>
+
+  </table>
+
+
+  <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Edit Agency Details</h3>
+    </div>
+    <div class="modal-body">
+      <%= render 'form' %>
+    </div>
+
+  </div></div>

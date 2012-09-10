@@ -1,0 +1,14 @@
+
+<div class="span6">
+<h1>Editing project</h1>
+
+<%= render 'form' %>
+</div>
+
+
+<div class="span6">
+	
+<% @images = @project.images %>
+<%= render 'images/imagecarousel'  %>
+
+</div>

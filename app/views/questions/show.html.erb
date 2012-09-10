@@ -1,0 +1,39 @@
+
+<div class="span6">
+
+
+<h1>Question</h1>
+Question is a <%= qtypera(@question.qtype) %>
+<br><br>
+<% if @question.qtype.to_i == 1 %>
+<p>
+
+  <%= image_tag @question.image %>
+</p>
+<% end %>
+
+<% if @question.qtype.to_i == 2 %>
+<p>
+  <b>Description:</b>
+  <%= @question.description %>
+</p>
+<% end %>
+
+<% if @question.qtype.to_i == 3 %>
+<p>
+  <b>Aoi:</b>
+  <%= @question.aoi_id %>
+</p>
+<% end %>
+
+
+</div>
+
+<div class="span6">
+	<h1>Responces</h1>
+
+<% @responces = @question.responces.all %>
+<%= render "responces/responcelist" %>
+</div>
+
+

@@ -1,0 +1,31 @@
+<div class="span6">
+
+  <%if @question.qtype == '1' %>
+
+  	<b>Description:</b>		
+  
+    <%= @responce.description %>
+
+
+<% elsif @question.qtype == '2' %>
+
+<%= image_tag @responce.image %>
+<br>
+<b>Description:</b>		
+  
+    <%= @responce.description %>
+
+
+<% elsif @question.qtype == '3' %>
+Responces are not entered using this interface.
+<% end %>
+
+
+</div>
+
+
+
+
+
+
+
