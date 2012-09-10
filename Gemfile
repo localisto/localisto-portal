@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem 'mysql2'
 gem "acts_as_list"
+gem 'therubyracer'
 
 
 # Gems used only for assets and not required
