@@ -1,16 +1,17 @@
 production:
   adapter: mysql2
-  user: localistoapp
-  password: mBuYXa7Z2GZhFUyE
+  username: localisto
+  password: BbMUPZ82Vy5uY2FL
   database: localistoapp
   host: localhost
+# socket: /var/lib/mysql/mysql.sock
   pool: 5
   timeout: 5000
 
 development:
   adapter: mysql2
   database: localisto9-3
-  user: root
-  password: root
+  username: rooto
+  password: rooto
   port: 8889
   pool: 5

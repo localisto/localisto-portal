@@ -1,5 +1,5 @@
 class ProjectImage < ActiveRecord::Base
-  efore_save :update_image_field
+  before_save :update_image_field
 
   self.table_name = 'project_image'
   acts_as_list
