@@ -1,5 +1,5 @@
 class Responce < ActiveRecord::Base
-	after_update :update_image_field
+	
   after_create :update_image_field
 attr_accessible :question_id, :image, :description, :sort_order, :position, :image
 	belongs_to :question
