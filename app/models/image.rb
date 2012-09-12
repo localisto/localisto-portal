@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   
   after_update :update_image_field
-  after_update :update_image_field
+  #after_update :update_image_field
 
   set_table_name "project_image"
   acts_as_list 

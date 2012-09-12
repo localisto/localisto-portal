@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
+
 after_update :update_image_field
-  after_create :update_image_field
 	
 	acts_as_list 
     self.table_name = 'question'
@@ -15,7 +15,7 @@ after_update :update_image_field
       :s3_credentials => "config/config.yml",
       :bucket => 'localisto-app',
       :s3_host_alias => 'cdn.localisto.org',
-      :url => ':s3_alias_url',
+      :url => ':s3_alias_urlq',
       :path => "/questions/:style/:id/:filename",
       :styles => { :thumb  => '120x120#' },
       :default_style => :original,
@@ -26,6 +26,7 @@ after_update :update_image_field
 
 private
   def update_image_field      
+  
   self.image_url = self.image.url
   self.save
   end
