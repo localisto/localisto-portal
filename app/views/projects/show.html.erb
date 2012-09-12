@@ -11,7 +11,7 @@
   <br>	<br>
 
 <p>
-  <b>Description:</b>
+  <b>Project Info</b>
   <%= @project.description %>
 </p>
 
@@ -28,6 +28,11 @@
 <p>
 <b>Meeting Starts:</b>
 <%= l @project.meeting_starts, :format => :short %>
+</p>
+<p>
+	<p>
+<b>Meeting Display Time:</b>
+<%=  @project.meeting_time%>
 </p>
 <p>
 

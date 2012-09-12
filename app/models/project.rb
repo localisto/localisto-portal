@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
 	belongs_to :agency
 
 
-    attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image
+    attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image, :meeting_time
    
    has_attached_file :image,
       :storage => 's3',

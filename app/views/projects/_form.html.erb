@@ -16,12 +16,12 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %>
+    <label>Project Info</label>
     <%= f.text_area :description, :class=>'projdesc' %>
   </div>
 
  <div class="field">
-    <%= f.label :image %><br />
+    <lable>Image for Grid Screen (Size W230 x H246)</lable><br />
     <%= f.file_field :image %>
   </div>
 
@@ -39,6 +39,12 @@
     <%= f.label :meeting_starts %>
     <%= f.datetime_select :meeting_starts, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year] %> 
   </div>
+
+    <div class="field">
+   <label>Meeting Time to be Displayed</label>
+    <%= f.text_field :meeting_time %>
+  </div>
+
 
   
   <div class="field">
