@@ -4,7 +4,7 @@
 <% if @question.qtype == '1' %>
 
 <ul class="sorlist" id="responces"> <% @responces.each do |responce| %>
-  <li id="responce_<%=responce.id%>"><span class="handle"><i class="icon-list"></i></span><%=responce.description%><%# link_to 'Show', project_responce_path(@project.id, responce.id) %><%= link_to 'Destroy', question_responce_path(@question.id, responce.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <li id="responce_<%=responce.id%>"><span class="handle"><i class="icon-list"></i></span><%=responce.description%><%# link_to 'Show', project_responce_path(@project.id, responce.id) %><%= link_to 'Destroy', question_responce_path(@question.id, responce.id), method: :delete, data: { confirm: 'Are you sure?' } %>	</li>
 <% end %></ul>
 <% end %>
 

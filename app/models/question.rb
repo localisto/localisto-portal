@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
 
-after_update :update_image_field
+  before_update :update_image_fieldu
+    after_create :update_image_field
 	
 	acts_as_list 
     self.table_name = 'question'
@@ -22,15 +23,20 @@ after_update :update_image_field
       :default_url => 'http://localisto.org/pixel.gif',
       :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
       :convert_options => { :all => '-strip -trim' }
+
+
   
 
-private
+ private
   def update_image_field      
-  
-  self.image_url = self.image.url
+ self.image_url = self.image.url
   self.save
   end
 
+   def update_image_fieldu     
+self.image_url = self.image.url
+
+  end
 
 
 

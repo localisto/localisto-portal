@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   
-  after_update :update_image_field
-  #after_update :update_image_field
+   before_update :update_image_fieldu
+    after_create :update_image_field
 
   set_table_name "project_image"
   acts_as_list 
@@ -24,12 +24,14 @@ has_attached_file :image,
       :convert_options => { :all => '-strip -trim' }
   
 
-private
+ private
   def update_image_field      
-  
-  self.image_url = self.image.url
+ self.image_url = self.image.url
   self.save
   end
 
+   def update_image_fieldu     
+self.image_url = self.image.url
 
+  end
 end
