@@ -27,8 +27,11 @@
 
   <div class="field">
     <%= f.label :location %>
-    <%= f.text_area  :location, :class=>'projloc' %>
+    <%= f.text_area  :location, :class=>'projloc', :id=>'countMe' %>
+    <div class="theCount">Lines used: <span id="linesUsed">0</span> of 3<div>
   </div>
+  <br>
+
    <div class="field">
     <%= f.label :coordinates %>
     <%= f.text_field :coordinates %>
@@ -71,3 +74,24 @@
     <%= f.submit :class=>'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var lines = 3;
+    var linesUsed = $('#linesUsed');
+
+    $('#countMe').keydown(function(e) {
+
+        newLines = $(this).val().split("\n").length;
+        linesUsed.text(newLines);
+
+        if(e.keyCode == 13 && newLines >= lines) {
+            linesUsed.css('color', 'red');
+            return false;
+        }
+        else {
+            linesUsed.css('color', '');
+        }
+    });
+});</script>
