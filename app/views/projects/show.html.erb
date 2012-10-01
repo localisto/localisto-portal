@@ -27,32 +27,41 @@
 
 <p>
 <b>Meeting Starts:</b>
+<% if @project.meeting_starts.nil? %>
+none
+<% else %>
 <%= l @project.meeting_starts, :format => :short %>
+<% end %>	
 </p>
+</p>
+
+	
 <p>
-	<p>
 <b>Meeting Display Time:</b>
 <%=  @project.meeting_time%>
 </p>
-<p>
 
+
+<p>
 <b>Survey Closes:</b>
+<% if @project.survey_closes.nil? %>
+none
+<% else %>
 <%= l @project.survey_closes, :format => :short %>
+<% end %>	
 </p>
 
-<b>Project Has Survey</b>
+<b>Project Has Survey:</b>
 <%= @project.has_survey %>
 </p>
 
-<b>Url for Facebook</b>
+<b>Url for Facebook:</b>
 <%= @project.fb_page_url%>
 </p>
 
-<b>Disabled</b>
+<b>Disabled:</b>
 <%= @project.disabled %>
 </p>
-
-
 
 
 </div>
