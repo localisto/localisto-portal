@@ -3,6 +3,7 @@
   <tr>
     <th>Prompt</th>
     <th>Description</th>
+    <th>Sort Order</th>
     <th></th>
 
   </tr>
@@ -11,6 +12,7 @@
   <tr>
     <td><%= qtyper(question.qtype) %></td>
     <td><%= question.description %></td>
+    <td><%= question.position%></td>
     <td><%= link_to "Show", project_question_path(@project.id, question.id) %></td>
   </tr>
 <% end %>
