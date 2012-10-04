@@ -33,7 +33,7 @@
   <br>
 
    <div class="field">
-    <%= f.label :coordinates %>
+    <label>Coordinates (example 33.4500, 70.6667)</label>
     <%= f.text_field :coordinates %>
   </div>
  
@@ -48,25 +48,26 @@
     <%= f.text_field :meeting_time %>
   </div>
 
-
   
-  <div class="field">
-    <%= f.label :survey_closes%>
-    <%= f.datetime_select :survey_closes, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year]  %> 
-  </div>
-    
   <div class="field">
     <%= f.label :has_survey %>
   <%= f.check_box :has_survey %>
   </div>
 
+  <div class="field">
+    <label>Survey Close Time / Sort Time</label>
+    <%= f.datetime_select :survey_closes, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year]  %> 
+  </div>
+    
+
+
     <div class="field">
-    <%= f.label :fb_page_url %>
+    <label>Link to Like</label>
   <%= f.text_field :fb_page_url %>
   </div>
 
   <div class="field">
-    <%= f.label :disabled %>
+    <label>Disabled (disable projects will not be visible on the app)</label>
   <%= f.check_box :disabled %>
   </div>
   <div class="field">

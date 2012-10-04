@@ -4,6 +4,7 @@ Responces are text
 <table class="table">
   <tr>
     <th>Description</th>
+    <th>Sort</th>
     <th></th>
 
   </tr>
@@ -11,7 +12,9 @@ Responces are text
 <% @responces.each do |responce| %>
   <tr>
     <td><%= responce.description %></td>
+        <td><%= responce.position %></td>
     <td><%= link_to 'Show', question_responce_path(@question.id, responce.id) %></td>
+
   </tr>
 <% end %>
 </table>
@@ -22,6 +25,7 @@ Responces are images
   <tr>
     <th>Image</th>
     <th>Description</th>
+    <th>Sort</th>
     <th></th>
 
   </tr>
@@ -30,6 +34,7 @@ Responces are images
   <tr>
   	<td><%= image_tag responce.image.url(:thumb) %></td
     <td><%= responce.description %></td>
+    <td><%= responce.position %></td>
     <td><%= link_to 'Show', question_responce_path(@question.id, responce.id) %></td>
   </tr>
 <% end %>

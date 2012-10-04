@@ -44,3 +44,5 @@ ul.sorlist li {list-style: none; margin-top: 10px;}
 textarea#question_description {width: 400px; height: 60px;}
 
 .projloc {width: 300px; height: 58px;}
+
+#footer {margin: 40px; border-top: grey soild 1px;}
