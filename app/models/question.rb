@@ -1,16 +1,6 @@
 class Question < ActiveRecord::Base
 
-class OnlyOneAOI < ActiveModel::Validator
-#does not allow you to create an AOI question if one exists
-  def validate(record)
-      proj = record.project_id
-     if Question.where(:qtype => 3, :project_id => proj).count >= 1
-      record.errors[:base] << "You can not have more than one AOI question"
-    end
-  end
-end
 
-  validates_with OnlyOneAOI
 
   before_update :update_image_fieldu
   after_create :update_image_field
