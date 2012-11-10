@@ -1,5 +1,10 @@
 Localisto::Application.routes.draw do
   
+
+    resources :projects do 
+  resources :results
+end
+
   get "home/index"
   match 'agencies/reorder' => 'agencies#reorder'
 

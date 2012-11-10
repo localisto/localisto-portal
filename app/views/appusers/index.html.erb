@@ -16,7 +16,7 @@
 
 <% @appusers.each do |appuser| %>
   <tr>
-        <td> <%= Useranswer.where(:user_id => appuser.id).count %>
+        <td> <%= Result.where(:user_id => appuser.id).count %>
         <td><%= appuser.username %></td>    
         <td><%= appuser.fb_gender %></td>
         <td><%= appuser.fb_location %></td>
