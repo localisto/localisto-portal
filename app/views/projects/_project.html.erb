@@ -3,5 +3,7 @@
     <td><%= link_to project.title, agency_project_path(project.agency_id, project.id)%>	</td>
    
     <td><%= link_to 'Destroy', agency_project_path(project.agency_id, project.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <td><%= link_to "Results", project_results_path(project.id) %></td>
   </tr>
 

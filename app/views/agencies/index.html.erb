@@ -7,11 +7,14 @@
   <tr>
     <th>Name</th>
   <th></th>  
+    <th></th>  
+ 
 </tr>
 
 <% @agencies.each do |agency| %>
   <tr>
     <td><%=link_to agency.name, agency %></td>
+
    <!-- <td><%#= agency.included_by_default %></td>
     <td><%#= agency.sort_order %></td>
     <td><%#= link_to 'Show', agency %></td>

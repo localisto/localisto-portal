@@ -29,8 +29,16 @@
                   <td><%= Result.where(:answer_id => r.id).count %> </td>
                   <td><%= number_to_percentage(Result.where(:answer_id => r.id).count.to_f/t*100) %> </td>
                   </tr>
+                  
+                  
+                  <% end %>
+          <tr>
+            <td>total</td>
+            <td><%= t %></td>
+            <td></td>
+       </table>
 
-            <% end %>
+           
 
         
 
@@ -89,6 +97,6 @@
 
 
 
-<br />
+
 
 <%# link_to 'New Result', new_result_path %>
