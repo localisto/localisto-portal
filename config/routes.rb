@@ -3,6 +3,8 @@ Localisto::Application.routes.draw do
   get "home/index"
   match 'agencies/reorder' => 'agencies#reorder'
 
+  resources :appusers
+
   resources :agencies do
     resources :projects 
   end
@@ -30,6 +32,8 @@ resources :agencies do
        post :sort, on: :collection
 
 end
+
+
 
 
 

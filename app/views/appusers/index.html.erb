@@ -1,16 +1,29 @@
 <h1>Listing appusers</h1>
 
-<table>
+<table class="table">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    
+    <td>Votes Cast</td>
+    <th>email</th>
+    <th>gender</th>
+    <th>location</th>
+    <th>hometown</th>
+     <th>bday</th>
+     <th>destory</th>
+
+    
   </tr>
 
 <% @appusers.each do |appuser| %>
   <tr>
-    <td><%= link_to 'Show', appuser %></td>
-    <td><%= link_to 'Edit', edit_appuser_path(appuser) %></td>
+        <td> <%= Useranswer.where(:user_id => appuser.id).count %>
+        <td><%= appuser.username %></td>    
+        <td><%= appuser.fb_gender %></td>
+        <td><%= appuser.fb_location %></td>
+        <td><%= appuser.fb_hometown %></td>
+        <td><%= appuser.fb_birthday %></td>
+  <!--    <td><%# link_to 'Show', appuser %></td> -->
+   <!--  <td><%# link_to 'Edit', edit_appuser_path(appuser) %></td> -->
     <td><%= link_to 'Destroy', appuser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

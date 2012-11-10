@@ -10,7 +10,7 @@ production:
 
 development:
   adapter: mysql2
-  database: localisto10-20
+  database: localisto11-9
   username: root
   password: root
   host: 127.0.0.1
