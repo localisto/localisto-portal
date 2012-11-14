@@ -7,6 +7,8 @@ end
 
   get "home/index"
   match 'agencies/reorder' => 'agencies#reorder'
+match 'projects/:project_id/surveyresults' => 'results#indexnolinks'
+
 
   resources :appusers
 

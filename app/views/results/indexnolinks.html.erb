@@ -1,0 +1,102 @@
+<h1>Listing results</h1>
+
+
+<% @questions.each do |q| %>
+<div class="well" style="float: left; width: 28%; margin-right: 20px;">
+ 
+            
+          <% if q.qtype == '1' %>
+       
+          <%= image_tag q.image.url(:thumb) %><br>
+             <%= q.description %> 
+           <table class="table">
+            <tr>
+              <th>Response</th>
+              <th>Votes</th>
+              <th>%</th>
+            </tr>
+          
+                <% t = 0 %>
+                  <% q.responces.each do |r| %>
+                  <% c = Result.where(:answer_id => r.id).count %>
+                  <% t = t+c %>
+                <% end %>
+
+
+                <% q.responces.each do |r| %>
+                  <tr>
+                  <td> <%=  r.description %> </td>
+                  <td><%= Result.where(:answer_id => r.id).count %> </td>
+                  <td><%= number_to_percentage(Result.where(:answer_id => r.id).count.to_f/t*100) %> </td>
+                  </tr>
+                  
+                  
+                  <% end %>
+          <tr>
+            <td>total</td>
+            <td><%= t %></td>
+            <td></td>
+       </table>
+
+           
+
+        
+
+
+  <!-- Q type 1 -->
+          <% elsif q.qtype == '2' %>
+             <%= q.description %> 
+            <table class="table">
+            <tr>
+              <th>Response</th>
+              <th>Votes</th>
+              <th>%</th>
+            </tr>
+          
+                <% t = 0 %>
+                  <% q.responces.each do |r| %>
+                  <% c = Result.where(:answer_id => r.id).count %>
+                  <% t = t+c %>
+                <% end %>
+
+
+                <% q.responces.each do |r| %>
+                  <tr>
+                  <td> <%= image_tag r.image.url(:thumb) %> </td>
+                  <td><%= Result.where(:answer_id => r.id).count %> </td>
+                  <td><%= number_to_percentage(Result.where(:answer_id => r.id).count.to_f/t*100) %> </td>
+                  </tr>
+
+            <% end %>
+
+          <tr>
+            <td>total</td>
+            <td><%= t %></td>
+            <td></td>
+       </table>
+         
+                     
+
+
+          <% elsif q.qtype == '3' %>
+                 <%= q.description %> 
+               <hr>
+          This is an AOI poll, please use the AOI interface to view results.
+
+          <% end %>
+
+
+
+
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+<%# link_to 'New Result', new_result_path %>
