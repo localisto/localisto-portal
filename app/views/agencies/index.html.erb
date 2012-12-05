@@ -2,11 +2,11 @@
   
 
 <h1>Agencies</h1>
-
+<%= @test %>
 <table class="table table-striped">
   <tr>
     <th>Name</th>
-  <th></th>  
+    
     <th></th>  
  
 </tr>
@@ -19,7 +19,7 @@
     <td><%#= agency.sort_order %></td>
     <td><%#= link_to 'Show', agency %></td>
     <td><%#= link_to 'Edit', edit_agency_path(agency) %></td>-->
-    <td><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+    <td ><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
   </tr>
 <% end %>
 </table>

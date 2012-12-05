@@ -1,5 +1,16 @@
 class QuestionsController < ApplicationController
 
+before_filter :own_agency
+
+def own_agency
+  project = Project.find(params[:project_id])
+  agency = project.agency_id
+  if localisto_staff?
+  elsif have_access? (agency)
+  else
+  redirect_to root_path, notice: 'Access Denied' 
+  end
+end
 
 
 def index

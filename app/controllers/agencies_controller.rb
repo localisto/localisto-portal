@@ -1,53 +1,53 @@
 class AgenciesController < ApplicationController
-  # GET /agencies
-  # GET /agencies.json
+
+  
+
+
   def index
-    @agencies = Agency.order('agency.position ASC')
-    @subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path], ["Order Agencies", agencies_reorder_path ]]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @agencies }
+    if localisto_staff?
+        @agencies = Agency.order('agency.position ASC')   
+      else
+        u = User.find(current_user.id)
+        @agencies = u.agencies.order('agency.position ASC')
     end
-  end
-
-  def sort
-@agencies = Agency.all
-@agencies.each do |agency|
-agency.position = params['agency'].to_s.index(agency.id.to_s).to_i + 1
-agency.save
+@subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path]]
 end
+  
 
-render :nothing => true
+
+
+def sort
+
+      @agencies = Agency.all
+        @agencies.each do |agency|
+        agency.position = params['agency'].to_s.index(agency.id.to_s).to_i + 1
+        agency.save
+        end
+      render :nothing => true
 end
 
 
 def reorder
-    @agencies = Agency.order('agency.position ASC')
-    @subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path]]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @agencies }
-    end
+  if localisto_staff?
+      @agencies = Agency.order('agency.position ASC')
+     @subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path]]
+  else
+     redirect_to agencies_path, notice: 'You must be a Localisto Staff member to reorder' 
+  end
 end
 
 
-  # GET /agencies/1
-  # GET /agencies/1.json
   def show
-
+    if localisto_staff?
     @agency = Agency.find(params[:id])
-     @subnav = [["Back", root_path, "btn back"], ["Edit Agency Details", "#myModal", "", "modal"], ["Add Project", new_agency_project_path(@agency.id)]  ]
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @agency }
+    else
+    u = User.find(current_user.id)
+    @agency = u.agencies.find(params[:id])
     end
   end
 
-  # GET /agencies/new
-  # GET /agencies/new.json
+
   def new
     @agency = Agency.new
 
@@ -57,52 +57,68 @@ end
     end
   end
 
-  # GET /agencies/1/edit
+
   def edit
+    if localisto_staff?
     @agency = Agency.find(params[:id])
+    else
+    u = User.find(current_user.id)
+    @agency = u.agencies.find(params[:id])
+    end
   end
 
-  # POST /agencies
-  # POST /agencies.json
+
   def create
     @agency = Agency.new(params[:agency])
+    
+        pa = Portaluserassignment.new
+        pa.user = current_user
+        pa.agency = @agency 
+        pa.save
 
-    respond_to do |format|
       if @agency.save
-        format.html { redirect_to @agency, notice: 'Agency was successfully created.' }
-        format.json { render json: @agency, status: :created, location: @agency }
+        redirect_to @agency, notice: 'Agency was successfully created.' 
       else
-        format.html { render action: "new" }
-        format.json { render json: @agency.errors, status: :unprocessable_entity }
+         render action: "new" 
       end
-    end
+    
   end
 
-  # PUT /agencies/1
-  # PUT /agencies/1.json
+
   def update
+    if localisto_staff?
     @agency = Agency.find(params[:id])
+    else
+    u = User.find(current_user.id)
+    @agency = u.agencies.find(params[:id])
+    end
+   
 
-    respond_to do |format|
       if @agency.update_attributes(params[:agency])
-        format.html { redirect_to @agency, notice: 'Agency was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @agency, notice: 'Agency was successfully updated.' 
+       
       else
-        format.html { render action: "edit" }
-        format.json { render json: @agency.errors, status: :unprocessable_entity }
-      end
+       render action: "edit" 
+       
+    
     end
   end
 
-  # DELETE /agencies/1
-  # DELETE /agencies/1.json
-  def destroy
-    @agency = Agency.find(params[:id])
-    @agency.destroy
 
-    respond_to do |format|
-      format.html { redirect_to agencies_url }
-      format.json { head :no_content }
+  def destroy
+    if localisto_staff?
+    @agency = Agency.find(params[:id])
+     @agency.destroy
+    else
+    u = User.find(current_user.id)
+    @agency = u.agencies.find(params[:id])
+     @agency.destroy
     end
+    
+
+  
+    redirect_to agencies_url 
+
+  
   end
 end

@@ -5,6 +5,8 @@ gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem "bcrypt-ruby", :require => "bcrypt"
+
 gem 'mysql2'
 gem "acts_as_list"
 gem 'therubyracer'
@@ -30,6 +32,7 @@ gem "paperclip", "~> 3.0"
 
 gem "aws-sdk"
 
+gem "nifty-generators", :group => :development
 	
 
 
@@ -47,3 +50,5 @@ gem "aws-sdk"
 
 # To use debugger
 # gem 'debugger'
+
+gem "mocha", :group => :test

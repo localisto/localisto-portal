@@ -46,3 +46,19 @@ textarea#question_description {width: 400px; height: 60px;}
 .projloc {width: 300px; height: 58px;}
 
 #footer {margin: 40px; border-top: grey soild 1px;}
+
+.fright {float: right!important;}
+.fleft {float: left;} 
+
+#submenu { background-color: #FAFAFA;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+    background-repeat: repeat-x;
+    border: 1px solid #D4D4D4;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    margin-top: 40px;
+    min-height: 40px;
+    padding-bottom: 3px;
+    padding-top: 5px;
+    margin-bottom: 20px;}
+#submenu .nav {margin-bottom: 0px;}

@@ -1,6 +1,9 @@
 class Agency < ActiveRecord::Base
    acts_as_list 
    
+ has_many :portaluserassignments
+ has_many :users, :through => :portaluserassignments
+
    has_many :projects, :dependent => :destroy
    self.table_name = 'agency'
   

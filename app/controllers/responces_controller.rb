@@ -1,7 +1,6 @@
 class ResponcesController < ApplicationController
-  # GET /responces
-  # GET /responces.json
- 
+
+
 
 def index
       @question = Question.find(params[:question_id])

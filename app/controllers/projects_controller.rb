@@ -1,6 +1,20 @@
- class ProjectsController < ApplicationController
+class ProjectsController < ApplicationController
 
- 
+
+
+before_filter :own_agency
+
+def own_agency
+  @agency = Agency.find(params[:agency_id])
+  if localisto_staff?
+  elsif have_access? (@agency)
+  else
+  redirect_to root_path, notice: 'Access Denied' 
+  end
+end
+
+
+
 
 def index
     

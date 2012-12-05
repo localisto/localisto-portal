@@ -1,0 +1,26 @@
+<h1>Portal users</h1>
+
+<table class="table">
+  <tr>
+    
+    <td>Name</td>
+    <th>Email</th>
+    <th>Organizations</th>
+    <th>Active</th>
+    <th>Destory</th>
+
+    
+  </tr>
+
+<% @user.each do |user| %>
+  <tr>
+  
+        <td><%= user.username %></td>    
+        <td><%= user.email %></td>
+        <td><%= %></td>
+        <td><%# user.active %></td>
+        <td><%= link_to 'Edit', adminedit_path(user)%></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

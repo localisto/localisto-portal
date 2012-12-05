@@ -1,35 +1,29 @@
 class AppusersController < ApplicationController
-  # GET /appusers
-  # GET /appusers.json
+before_filter :rights
+
+def rights
+
+  if localisto_staff?
+  else
+  redirect_to root_path, notice: 'Access Denied' 
+  end
+
+
+end
   def index
     @appusers = Appuser.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @appusers }
-    end
   end
 
   # GET /appusers/1
   # GET /appusers/1.json
   def show
     @appuser = Appuser.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @appuser }
-    end
   end
 
   # GET /appusers/new
   # GET /appusers/new.json
   def new
     @appuser = Appuser.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @appuser }
-    end
   end
 
   # GET /appusers/1/edit
@@ -44,11 +38,9 @@ class AppusersController < ApplicationController
 
     respond_to do |format|
       if @appuser.save
-        format.html { redirect_to @appuser, notice: 'Appuser was successfully created.' }
-        format.json { render json: @appuser, status: :created, location: @appuser }
+      redirect_to @appuser, notice: 'Appuser was successfully created.' 
       else
-        format.html { render action: "new" }
-        format.json { render json: @appuser.errors, status: :unprocessable_entity }
+         render action: "new" 
       end
     end
   end

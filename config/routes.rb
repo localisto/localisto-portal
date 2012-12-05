@@ -1,6 +1,20 @@
 Localisto::Application.routes.draw do
   
 
+  match 'user/edit' => 'users#edit', :as => :edit_current_user
+
+  match 'signup' => 'users#new', :as => :signup
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  match 'login' => 'sessions#new', :as => :login
+
+  match 'users/:id/edituser' => 'users#adminedit', :as =>:adminedit
+
+  resources :sessions
+
+  resources :users
+
     resources :projects do 
   resources :results
 end
@@ -8,6 +22,7 @@ end
   get "home/index"
   match 'agencies/reorder' => 'agencies#reorder'
 match 'projects/:project_id/surveyresults' => 'results#indexnolinks'
+
 
 
   resources :appusers

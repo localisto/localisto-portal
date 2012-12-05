@@ -4,64 +4,88 @@
   <title>Localisto</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-	    <div class="navbar navbar-inverse">
- 
+  <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-     <div class="container">
-    <a class="brand" href="#">Localisto Admin Portal</a>
-    <ul class="nav">
-    <li ><a href="/">Home</a></li>
-    <li><a href="/agencies/">Agencies</a></li>
-    <li><a href="/appusers">Users</a></li> 
-    </ul>
-    </div>
+  <div class="container">
+        <a class="brand" href="#">Localisto Admin Portal</a>
+        <ul class="nav">
+          <li ><a href="/">Home</a></li>
+          <li><a href="/agencies/">Agencies</a></li>
+          <li><a href="/appusers">App Users</a></li>
+            <li><a href="/users">Portal Users</a></li> 
+        </ul>
+        <ul class="fright nav">
+           <% if logged_in? %>
+  
+   <li > <%= link_to "Edit profile", edit_current_user_path %></li> 
+   <li > <%= link_to "Log out", logout_path %></li>
+  <% else %>
+   <li >  <%= link_to "Sign up", signup_path %></li>
+    
+   <li > <%= link_to "log in", login_path %></li>
+   <% end %>
+          
+        </ul>
+      </div>
+
     </div>
   </div>
 
-  <ul class="breadcrumb">
-  <div class="container">
-    
+<div id="submenu">
+      <div class="container">
+    <ul class="nav nav-pills">
+    <li class="active">
+ 
+     <% if @subnav.nil? == false %>
+        <% @subnav.each do |anchor, url, cssclass, datatog| %>
 
-<% if @subnav.nil? == false %>
-<% @subnav.each do |anchor, url, cssclass, datatog| %>
-
-    <li><%= link_to anchor, url, :class => cssclass, :data => {:toggle => datatog}%></li> 
-  <% end %>
-<%else%>
- needs sub nav
- <% end %>
-
-    
-   </div>
+        <li><%= link_to anchor, url, :class => cssclass, :data => {:toggle => datatog}%></li> 
+        <% end %>
+        <%else%>
+        needs sub nav
+        <% end %>
     </ul>
- 
-    
-
-
-<div class="container">
-  <div class="row">
-<%= render 'layouts/flash_messages' %>
-  <div class="alert">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <strong>Localisto Portal - Beta Version</strong> <br>We're currently under construction, please contact Jackie at <a href="mailto:Jackie@localisto.org">Jackie@localisto.org</a> if we can help you navigate the site or to provide feedback!
+ </div>
 </div>
-</div>
-<div class="row">
+
+          
 
 
-<%= yield %>
 
 
-</div>
-</div>
- 
- <div id="footer"><div class="container"></div></div>
+
+
+
+
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/flash_messages' %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Localisto Portal - Beta Version</strong> <br>We're currently under construction, please contact Jackie at <a href="mailto:Jackie@localisto.org">Jackie@localisto.org</a> if we can help you navigate the site or to provide feedback!
+      </div>
+    </div>
+
+    <div class="row">
+
+
+      <%= yield %>
+
+
+    </div>
+  </div>
+
+  <div id="footer"><div class="container"></div></div>
 
 </body>
 </html>
