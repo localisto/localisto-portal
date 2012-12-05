@@ -1,6 +1,20 @@
 class ResponcesController < ApplicationController
 
 
+before_filter :own_agency
+
+def own_agency
+  question = Question.find(params[:question_id])
+  project = Project.find(question.project_id)
+  agency = project.agency_id
+  if localisto_staff?
+  elsif have_access? (agency)
+  else
+  redirect_to root_path, notice: 'Access Denied' 
+  end
+end
+
+
 
 def index
       @question = Question.find(params[:question_id])

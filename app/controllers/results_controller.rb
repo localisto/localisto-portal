@@ -1,5 +1,7 @@
 class ResultsController < ApplicationController
 
+  
+
 layout "nolinks", :except => [:index]
 
   def index
