@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   self.table_name = 'portalusers'
-  attr_accessible :username, :email, :password, :password_confirmation, :localisto_staff
+  attr_accessible :username, :email, :password, :password_confirmation, :localisto_staff,  :is_active
 
 
  has_many :portaluserassignments
@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   before_save :prepare_password
+
 
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :allow_blank => true
@@ -37,4 +38,9 @@ class User < ActiveRecord::Base
       self.password_hash = encrypt_password(password)
     end
   end
+
+
+
+
+
 end

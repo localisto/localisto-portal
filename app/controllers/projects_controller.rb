@@ -2,14 +2,24 @@ class ProjectsController < ApplicationController
 
 
 
-before_filter :own_agency
+#before_filter :user_test
 
-def own_agency
-  @agency = Agency.find(params[:agency_id])
-  if localisto_staff?
-  elsif have_access? (@agency)
-  else
+def user_test
+  agency = Agency.find(params[:agency_id])
+  a = agency.id
+  u = User.find(current_user.id)
+  r = user_rights(a, u)
+  
+  if r == "denied"
   redirect_to root_path, notice: 'Access Denied' 
+  
+  elsif r == "granted"
+  
+  elsif r == "notactive"
+  redirect_to root_path, notice: 'You user is not active. Please contact support' 
+  
+  else
+  redirect_to root_path, notice: 'Access Denied'  
   end
 end
 

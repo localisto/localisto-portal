@@ -17,7 +17,7 @@
 #   before_filter :login_required, :except => [:index, :show]
 module ControllerAuthentication
   def self.included(controller)
-    controller.send :helper_method, :current_user, :logged_in?, :localisto_staff?, :redirect_to_target_or_default
+    controller.send :helper_method, :current_user, :logged_in?, :localisto_staff?, :redirect_to_target_or_default, :user_rights
   end
 
   def current_user
@@ -28,10 +28,34 @@ module ControllerAuthentication
     current_user
   end
 
- # def user_rights (obj)
-#if logged_in?
-#  if 
-#  end
+ 
+
+def user_rights(agency, user)
+    u = User.find(user) 
+  if u.localisto_staff == 1
+     @r = "user is admin"
+  else
+   if logged_in?
+     if u.is_active == 1
+         #user logged in and active       
+         a = u.agencies.find_by_id(agency)
+           if a != nil
+             #user loggedin, active, has agency
+             "granted"    
+           elsif a == nil 
+             #user loggedin, active, does not have agency
+             "denied"
+           end
+     else
+        #user logged in and NOT active
+         "notactive"
+     end
+   end
+  end
+end
+
+
+
 
   def localisto_staff?
     if logged_in?

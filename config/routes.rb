@@ -9,18 +9,31 @@ Localisto::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  match 'users/:id/edituser' => 'users#adminedit', :as =>:adminedit
+  #match 'users/:id/edituser' => 'users#adminedit', :as =>:adminedit
+   #match 'users/:id/adminedit' => 'users#adminupdate', :as =>:adminupdate
+#match 'users/:id/adminupdate' => 'users#adminupdate', :as =>:adminupdate
+put 'update_profile/:id' => "users#update_profile", :as => 'update_profile'
+
+match '/adminedit/:id' => 'users#adminedit', :as =>:adminedit
+
+#match 'users/:id/addremoveagency' => 'users#addremoveagency', :as =>:addremoveagency
+
 
   resources :sessions
 
-  resources :users
-
-    resources :projects do 
-  resources :results
+  resources :users do
+    member do
+      put :update_profile
+    end
 end
+   
 
-  get "home/index"
-  match 'agencies/reorder' => 'agencies#reorder'
+  resources :projects do 
+    resources :results
+  end
+
+get "home/index"
+match 'agencies/reorder' => 'agencies#reorder'
 match 'projects/:project_id/surveyresults' => 'results#indexnolinks'
 
 

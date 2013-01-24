@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
 	
 	before_update :update_image_fieldu
   after_create :update_image_field
+  before_update :check_publish
 	
 	has_many :images, :dependent => :destroy
 	has_many :questions, :dependent => :destroy
@@ -39,4 +40,14 @@ private
   self.grid_image = self.image.url
  
   end
+
+
+
+    def check_publish
+
+      if self.admin_publish == true and self.user_publish == true
+        self.disabled = 0
+      end
+    end
+
 end

@@ -62,3 +62,14 @@ textarea#question_description {width: 400px; height: 60px;}
     padding-top: 5px;
     margin-bottom: 20px;}
 #submenu .nav {margin-bottom: 0px;}
+
+
+.clear {clear: both;}
+
+.statusdot {float:left; padding-right: 10px; padding-left: 5px; cursor: default;}
+
+.sred  {color: #ff3100;}
+.sgreen { color: #00b74a;}
+.syellow {color: #ffdf00}
+
+

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
-  before_filter :staff_login, :except => [:new, :create, :update]
+  before_filter :localisto_staff?, :except => [:new, :create, :update]
 
 
 
@@ -27,10 +27,41 @@ end
   end
 
     def adminedit
-    @user = User.find(params[:id])
+  @user = User.find(params[:id])
   end
 
+  def addremoveagency
+    @user = current_user
+    @agencies = @user.agencies
+  end
+
+  
+#def adminupdate
+#    @user = User.find(params[:id])
+    #user = current_user
+    #if @user.update_attributes(:id => @user) 
+     # redirect_to root_url, :notice => "Your profile has been updated. ********"
+    #else
+#    render :action => 'adminedit'
+    #  end
+#  end
+
+  def update_profile
+  @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      redirect_to root_url, notice: 'User was successfully updated.'
+    else
+      render action: "adminedit" 
+    end
+
+end
+
+
+
+
   def update
+    #@user = User.find(params[:id])
     @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to root_url, :notice => "Your profile has been updated."
