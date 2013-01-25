@@ -1,20 +1,20 @@
-<h1>Listing appusers</h1>
+<h1>Application Users (<%= @appusers.count %>)</h1>
 
 <table class="table">
   <tr>
     
     <td>Votes Cast</td>
-    <th>email</th>
-    <th>gender</th>
-    <th>location</th>
-    <th>hometown</th>
-     <th>bday</th>
-     <th>destory</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Location</th>
+    <th>Hometown</th>
+     <th>Bday</th>
+     <th>Destory</th>
 
     
   </tr>
 
-<% @appusers.each do |appuser| %>
+<% @appusers.each do |appuser| %> 
   <tr>
         <td> <%= Result.where(:user_id => appuser.id).count %>
         <td><%= appuser.username %></td>    
@@ -29,6 +29,5 @@
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'New Appuser', new_appuser_path %>
+

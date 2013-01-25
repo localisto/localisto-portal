@@ -1,6 +1,8 @@
 Localisto::Application.routes.draw do
   
 
+  resources :portaluserassignments
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
@@ -16,7 +18,6 @@ put 'update_profile/:id' => "users#update_profile", :as => 'update_profile'
 
 match '/adminedit/:id' => 'users#adminedit', :as =>:adminedit
 
-#match 'users/:id/addremoveagency' => 'users#addremoveagency', :as =>:addremoveagency
 
 
   resources :sessions
@@ -25,6 +26,7 @@ match '/adminedit/:id' => 'users#adminedit', :as =>:adminedit
     member do
       put :update_profile
     end
+    resources :portaluserassignments
 end
    
 

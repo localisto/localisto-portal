@@ -43,9 +43,11 @@ end
   def show
     if localisto_staff?
     @agency = Agency.find(params[:id])
+    @subnav = [ ['New Project', new_agency_project_path(@agency.id)] ] 
     else
     u = User.find(current_user.id)
     @agency = u.agencies.find(params[:id])
+    @subnav = [ ['New Project', new_agency_project_path(@agency.id)] ] 
     end
   end
 

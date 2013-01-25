@@ -16,9 +16,13 @@ class Agency < ActiveRecord::Base
 
     def check_publish
 
-    	if self.admin_publish == true and self.user_publish == true
-    		self.disabled = 0
-    	end
+    	if self.user_publish == true and self.admin_publish == true 
+    		  self.disabled = 0
+      
+      else
+         self.disabled = 1
+     end
+
     end
 
 end

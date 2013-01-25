@@ -72,4 +72,19 @@ textarea#question_description {width: 400px; height: 60px;}
 .sgreen { color: #00b74a;}
 .syellow {color: #ffdf00}
 
+.projecticon { float:left; margin-left: 30px; margin-right: 30px; margin-top: 60px}
 
+.iconwrap {width: 840px; margin: auto;}
+.linkwrap {width: 840px; margin: auto;}
+.linkwrap  {text-align: center;}
+
+ div.projecticon img {
+    height: 150px;
+    width: 150px;
+
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+border-radius: 20px; /* future proofing */
+-khtml-border-radius: 20px; /* for old Konqueror browsers */
+-webkit-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);
+box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);

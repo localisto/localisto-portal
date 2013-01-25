@@ -1,0 +1,23 @@
+<%= form_for ([@user, @portaluserassignment]) do |f| %>
+  <% if @portaluserassignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@portaluserassignment.errors.count, "error") %> prohibited this portaluserassignment from being saved:</h2>
+
+      <ul>
+      <% @portaluserassignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+
+<%= f.select :agency_id, Agency.all.map {|r| [r.name,r.id] } %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

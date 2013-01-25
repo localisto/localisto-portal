@@ -1,0 +1,23 @@
+<h1>Agencies <%= @user.username %> Manages</h1>
+
+<table class="table">
+  <tr>
+    <th>Agency</th>
+    <th>Unmanage</th>
+  </tr>
+
+<% @portaluserassignmentsage.each do |pua| %>
+  <tr>
+    <td><%= Agency.find(pua.agency_id).name =%> </td>
+    <td><%= link_to 'Destroy', user_portaluserassignment_path(pua.user_id, pua.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<tr><td><%= render 'form' %></td></tr>
+</table>
+
+<br />
+
+
+
+
+

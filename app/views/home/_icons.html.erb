@@ -1,0 +1,16 @@
+<center>recent projects for<br><h1><%= @agency.name %></h1></center>
+
+<div class="row-fluid">
+<div class="iconwrap">
+<% @projects.each do |project| %>
+ <div class="projecticon">
+ 	<%= link_to(image_tag(project.image), agency_project_path(project.agency_id, project.id), :rel => "tooltip" ,:title => project.title) %></div>
+<% end %>
+</div>
+</div>
+<!-- <div class="linkwrap">more projects..........more agencies</div> -->
+</div>
+
+
+
+

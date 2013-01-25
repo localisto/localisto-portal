@@ -17,7 +17,7 @@
         <td width="15px"><%= useractive_check(user) %></td>
         <td><%= link_to user.username, adminedit_path(user)%></td>    
         <td><%= user.email %></td>
-        <td>(<%= Portaluserassignment.where(:user_id => user.id).count%>) Manage</td> 
+        <td>(<%= Portaluserassignment.where(:user_id => user.id).count%>) <%= link_to 'Manage', user_portaluserassignments_path(user) %></td> 
 
   </tr>
 <% end %>

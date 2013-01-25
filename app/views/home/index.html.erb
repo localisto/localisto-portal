@@ -1,8 +1,51 @@
 <div class="container">
-<div class="row">
+
 <div class="span12">
-<h1><br><Br>Welcome to the Localisto Web Portal</h1>
+
+
+
+<% if @action == 'icons'  %>
+<%= render 'icons' %>
+
+<% elsif @action == 'noage' %>
+
+
+<% elsif @action == 'nologin' %>
+<style>
+    input {
+        max-width: 100%;
+    } 
+    #submenu {display: none}
+    .space {margin-top: 80px;}
+</style>	
+<div class="row space">
+
+	<div class="span6 offset1">
+		<h1>Localisto Agencies Management</h1>
+	</div>
+		<div class="span3">
+<div class="well">
+	<p>Already have an account? <a href="#myModal" data-toggle="modal">Log In</a>.</p>
+	<hr>
+<%= render :partial => "users/form", :locals => {:@user => User.new} %>
+
+</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<% end %>
+
+
+
 
 </div>
 </div>
-</div>
+

@@ -1,0 +1,2 @@
+module PortaluserassignmentsHelper
+end

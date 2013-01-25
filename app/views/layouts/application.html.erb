@@ -13,25 +13,43 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
   <div class="container">
-        <a class="brand" href="#">Localisto Admin Portal</a>
+        <a class="brand" href="/">Localisto Admin Portal</a>
         <ul class="nav">
-          <li ><a href="/">Home</a></li>
-          <li><a href="/agencies/">Agencies</a></li>
-          <li><a href="/appusers">App Users</a></li>
-            <li><a href="/users">Portal Users</a></li> 
+
+          
+          
         </ul>
-        <ul class="fright nav">
-           <% if logged_in? %>
+
+<ul class="nav pull-right">
+                      <% if logged_in? %>
   
    <li > <%= link_to "Edit profile", edit_current_user_path %></li> 
    <li > <%= link_to "Log out", logout_path %></li>
   <% else %>
+
    <li >  <%= link_to "Sign up", signup_path %></li>
     
-   <li > <%= link_to "log in", login_path %></li>
-   <% end %>
+   <li > <a href="#myModal" data-toggle="modal">Log In</a></li>
+   <% end %> 
+                      
+    <% if localisto_staff? %>
+                      <li class="divider-vertical"></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                         <li><a href="/agencies/">All Agencies</a></li>
+                         
+                          <li class="divider"></li>
+                          <li><a href="/appusers">Manage App Users</a></li>
+                         <li><a href="/users">Manage Portal Users</a></li> 
+                        </ul>
+                      </li>
+                      <% end %>
+                    </ul>
+       
+           
           
-        </ul>
+      
       </div>
 
     </div>
@@ -46,7 +64,9 @@
         <% @subnav.each do |anchor, url, cssclass, datatog| %>
 
         <li><%= link_to anchor, url, :class => cssclass, :data => {:toggle => datatog}%></li> 
+
         <% end %>
+
         <%else%>
         needs sub nav
         <% end %>
@@ -55,25 +75,16 @@
 </div>
 
           
-
-
-
-
-
-
-
-
-
-
+  <%= render :partial => "sessions/loginmodal" %>
 
 
   <div class="container">
     <div class="row">
       <%= render 'layouts/flash_messages' %>
-      <div class="alert">
+     <!-- <div class="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>Localisto Portal - Beta Version</strong> <br>We're currently under construction, please contact Jackie at <a href="mailto:Jackie@localisto.org">Jackie@localisto.org</a> if we can help you navigate the site or to provide feedback!
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
