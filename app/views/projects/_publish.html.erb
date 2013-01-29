@@ -28,6 +28,18 @@
     <%end%>
 </div>
 
+<% if current_user.localisto_staff == 1 %>
+<div class="well">
+  <h2> Adminstative </h2>
+  <div class="field">
+    <%= f.check_box :admin_publish%>
+    <lable class="checkbox inline"> Publish </lable>
+
+
+</div>
+  </div>
+  <% end %>
+
 
 
 </div>
