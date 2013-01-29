@@ -81,9 +81,10 @@
  </div>
 </div>
 
-          
+      <% if logged_in? %>
+      <%else%>     
   <%= render :partial => "sessions/loginmodal" %>
-
+<% end %>
 
   <div class="container">
     <div class="row">
