@@ -10,13 +10,13 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem 'mysql2'
 gem "acts_as_list"
 gem 'therubyracer'
-gem "jquery-ui-rails", "~> 2.0.0"
+gem "jquery-ui-rails", "~> 3.0.1"
 gem 'bootstrap-sass'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.1'
 
   
@@ -27,7 +27,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem "jquery-rails", "~> 2.1.1"
 gem "paperclip", "~> 3.0"
 
 gem "aws-sdk"

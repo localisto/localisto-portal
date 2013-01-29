@@ -11,6 +11,8 @@ Localisto::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
+    match 'letsgetstarted' => 'home#letsgetstarted', :as => :letsgetstarted
+
   #match 'users/:id/edituser' => 'users#adminedit', :as =>:adminedit
    #match 'users/:id/adminedit' => 'users#adminupdate', :as =>:adminupdate
 #match 'users/:id/adminupdate' => 'users#adminupdate', :as =>:adminupdate

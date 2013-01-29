@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div id="publish" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Publish</h3>
+</div>
+<div class="modal-body">
+
+
+  <% if @agency.disabled == true %>
+<div class="alert">The Agency that controls this project has not been published yet.  You must publish the agency before you can publish this project</div>
+  <%else%>
+  <% end %>
+ <%= form_for([@agency,@project]) do |f| %>
+
+<div class="field">
+      
+    <%= f.check_box :user_publish, :class => "checkbox inline"%>
+
+    <lable class="">Publish </lable> <br>
+    <br>
+  
+    <% if @project.admin_publish == false %>
+
+    <div class="alert">Once you have pulished your project it must be aprroved before it propagates to the app</div>
+    <% elsif @project.admin_publish == true %>
+    <div class="alert">Your project has been approved for publish! Clicking publish will cause it to propagate to the app</div>
+    <%end%>
+</div>
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+<%= submit_tag "Save", :class=>'btn btn-primary'%>
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<% end %>
+</div>
+</div>

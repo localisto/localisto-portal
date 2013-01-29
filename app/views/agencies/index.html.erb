@@ -7,15 +7,15 @@
   <tr>
     <th>Agency</th>
     <th>Projects</th>
-    <th>Edit</th>  
+
  
 </tr>
 
 <% @agencies.each do |agency| %>
   <tr>
     <td><%= published_check(agency) %> <%=link_to agency.name, agency %></td>
-    <td>-</td>
-    <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
+    <td><%= agency.projects.count %></td>
+
    <!-- <td><%#= agency.included_by_default %></td>
     <td><%#= agency.sort_order %></td> -->
   </tr>

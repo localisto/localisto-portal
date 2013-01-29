@@ -7,7 +7,22 @@
 <% if @action == 'icons'  %>
 <%= render 'icons' %>
 
+
+
+
 <% elsif @action == 'noage' %>
+<br><br><br>
+<center><h2> Welcome </h2><br>
+<h4>You have not created an agency yet<br>
+do so by clicking the 'Create New Agency Button'</h4>
+<br><br><br>
+
+
+<%= link_to 'Create New Agency', new_agency_path, :class => " btn btn-success btn-large" %>
+
+ </center>
+
+
 
 
 <% elsif @action == 'nologin' %>

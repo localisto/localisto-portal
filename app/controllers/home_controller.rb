@@ -1,17 +1,29 @@
 class HomeController < ApplicationController
+  
+
+def letsgetstarted
+@subnav = []
+end
+
   def index
 
   	if logged_in?
 		u = User.find(current_user.id)
-         if u.agencies.order('agency.position ASC').first != nil
+         if u.agencies.first != nil
 
-        	@agency = u.agencies.order('agency.updated_at desc').first
-        	@projects = Project.where(:agency_id => @agency.id, :disabled => '0').reverse_order
-        	@subnav = [['More Projects', agency_path(@agency.id)], ['New Project', new_agency_project_path(@agency.id)], ['Agencies', agencies_path] ] 
+        	@agency = u.agencies.order.first
+        	@projects = Project.where(:agency_id => @agency.id).reverse_order
+     
         	@action = 'icons'
-				else
-			@subnav = [ ['New Age', new_agency_path], ['Agencies', agencies_path] ] 
-			@action = 'noage'
+				 if @projects.count == 0
+        	@subnav = [['More Projects', agency_path(@agency.id)], ['New Project', new_agency_project_path(@agency.id),"","","example","Your agency does not have any projects yet.  Click above to create one.","Create a project","popover","bottom"], ['Agencies', agencies_path] ] 
+        		else 
+        	@subnav = [['More Projects', agency_path(@agency.id)], ['New Project', new_agency_project_path(@agency.id)], ['Agencies', agencies_path] ] 
+end
+				else	
+																			
+			redirect_to letsgetstarted_path
+
 			
 		end
 
@@ -21,5 +33,8 @@ class HomeController < ApplicationController
  	
 	end
   
+
+
+
   end
 end

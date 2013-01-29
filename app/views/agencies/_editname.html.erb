@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div id="edit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Edit Name</h3>
+</div>
+<div class="modal-body">
+
+
+  
+<%= form_for(@agency, :html => { :class => "form-inline"}) do |f| %>
+  
+
+
+
+    <div class="field">
+    <%= f.text_field :name %>
+   </div>
+
+
+
+
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+    <%= f.submit "Save", :class=>'btn btn-primary' %>
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div id="delete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Delete</h3>
+</div>
+<div class="modal-body">
+
+
+ 
+
+   <div class="alert alert-error deletezone">
+      <h2 class="fleft">Delete Zone</h2>
+      
+      <div class="btn-group fright" style="padding-top: 5px;">
+ 
+     	<%= link_to 'Permanently Delete', agency_path(@agency), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </div>
+    <div class="clear"></div>
+</div>
+
+   
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+
+</div>
+</div>

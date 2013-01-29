@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
 def index
   @user = User.all
+  @subnav = []
 end
 
   def new
@@ -24,10 +25,12 @@ end
 
   def edit
     @user = current_user
+    @subnav = []
   end
 
     def adminedit
   @user = User.find(params[:id])
+  @subnav = []
   end
 
   def addremoveagency

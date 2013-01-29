@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div id="publish" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Publish</h3>
+</div>
+<div class="modal-body">
+
+
+  
+<%= form_for(@agency, :html => { :class => "form-inline"}) do |f| %>
+  
+
+
+
+
+   <div class="field">      
+    <%= f.check_box :user_publish%>
+    <lable class="checkbox inline"> Publish </lable>
+</div>
+
+<br>
+
+<% if @agency.admin_publish == false %>
+
+    <div class="alert">Once you have pulished your project it must be aprroved before it propagates to the app</div>
+    <% elsif @agency.admin_publish == true %>
+    <div class="alert">Your project has been approved for publish! Clicking publish will cause it to propagate to the app</div>
+    <%end%>
+
+<% if current_user.localisto_staff == 1 %>
+<div class="well">
+  <h2> Adminstative </h2>
+  <div class="field">
+    <%= f.check_box :admin_publish%>
+    <lable class="checkbox inline"> Publish </lable>
+    <br>
+    <%= f.check_box :included_by_default %>
+    <lable class="checkbox inline"> Include by default </lable>
+</div>
+  </div>
+  <% end %>
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+    <%= f.submit "Save", :class=>'btn btn-primary' %>
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<% end %>
+</div>
+</div>

@@ -2,16 +2,16 @@
 <div class="span6">
 
 
-
+<div class="proj">
 <%= image_tag @project.image %>
 
 <h1><%= @project.title%></h1>
   
   <%= @agency.name %>
   <br>	<br>
-
+<div class="clear"></div>
 <p>
-  <b>Project Info</b>
+
   <%= @project.description %>
 </p>
 
@@ -33,7 +33,6 @@ none
 <%= l @project.meeting_starts, :format => :short %>
 <% end %>	
 </p>
-</p>
 
 	
 <p>
@@ -50,21 +49,21 @@ none
 <%= l @project.survey_closes, :format => :short %>
 <% end %>	
 </p>
-
+<p>
 <b>Project Has Survey:</b>
 <%= @project.has_survey %>
 </p>
 
-<b>Url for Facebook:</b>
+<!-- <b>Url for Facebook:</b>
 <%= @project.fb_page_url%>
-</p>
+</p> -->
 
-<b>Disabled:</b>
-<%= @project.disabled %>
-</p>
+<!-- <b>Disabled:</b>
+<%# @project.disabled %> -->
 
 
-</div>
+
+</div></div>
 
 <div class="span6">
 
@@ -75,11 +74,11 @@ none
 
 <%= render 'questions/questionlist' %>
 
-
-
 </div>
 
+  <%= render :partial => "publish" %>
+    <%= render :partial => "archive" %>
+        <%= render :partial => "delete" %>
 
-
-<%# link_to 'Back', projects_path %>
+<%= link_to 'Permanently Delete', [@agency,@project], method: :delete, data: { confirm: 'Are you sure?' } %>
 

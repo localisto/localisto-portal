@@ -2,9 +2,6 @@ class AgenciesController < ApplicationController
 
 
 
-  
-
-
   def index
 
     if localisto_staff?
@@ -13,8 +10,8 @@ class AgenciesController < ApplicationController
         u = User.find(current_user.id)
         @agencies = u.agencies.order('agency.position ASC')
     end
-@subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path]]
-end
+  @subnav = [["Home", root_path, "btn back"], ["New Agency", new_agency_path]]
+  end
   
 
 
@@ -43,11 +40,17 @@ end
   def show
     if localisto_staff?
     @agency = Agency.find(params[:id])
-    @subnav = [ ['New Project', new_agency_project_path(@agency.id)] ] 
+    @subnav = [ ['New Project', new_agency_project_path(@agency.id)], ['Edit', '#edit',"","modal" ], ['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]  
+
     else
     u = User.find(current_user.id)
     @agency = u.agencies.find(params[:id])
-    @subnav = [ ['New Project', new_agency_project_path(@agency.id)] ] 
+     if @agency.projects.count == 0
+    @subnav = [['New Project', new_agency_project_path(@agency.id),"","", "example","Your agency does not have any projects yet.  Click above to create one.","Create a project","popover","bottom"],  ['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]  
+    else
+    @subnav = [['New Project', new_agency_project_path(@agency.id)],  ['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]  
+
+    end
     end
   end
 
@@ -80,7 +83,8 @@ end
         pa.save
 
       if @agency.save
-        redirect_to @agency, notice: 'Agency was successfully created.' 
+        #redirect_to @agency, notice: 'Agency was successfully created.' 
+        redirect_to root_url, notice: 'Agency was successfully created.' 
       else
          render action: "new" 
       end

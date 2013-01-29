@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
 
-<p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
+
 
 <%= form_tag sessions_path do %>
   <p>
@@ -21,9 +21,11 @@
 
 </div>
 <div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<p class="fleft">Don't have an account? <%= link_to "Sign up!", signup_path %></p>
+
 
 <%= submit_tag "Log in", :class=>'btn btn-primary'%>
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 <% end %>
 </div>
 </div>

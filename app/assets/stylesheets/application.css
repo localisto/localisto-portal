@@ -16,7 +16,7 @@
 h1 {padding-bottom: 2px;}
 table {margin-top: 30px;}
 .modal {display: none;}
-textarea#project_description.projdesc {width: 500px; height: 140px}
+textarea#project_description.projdesc {width: 90%; height: 340px}
 
 .back {margin-right: 30px;}
 
@@ -78,7 +78,10 @@ textarea#question_description {width: 400px; height: 60px;}
 .linkwrap {width: 840px; margin: auto;}
 .linkwrap  {text-align: center;}
 
+
+ div.projecticon img:hover {position: relative; top: -10px; opacity: 1;}
  div.projecticon img {
+    opacity: .7;
     height: 150px;
     width: 150px;
 
@@ -87,4 +90,12 @@ textarea#question_description {width: 400px; height: 60px;}
 border-radius: 20px; /* future proofing */
 -khtml-border-radius: 20px; /* for old Konqueror browsers */
 -webkit-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);
-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);
+box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);}
+
+.getstarted {text-align: center; margin-top: 80px}
+
+
+.proj img {float: left; height: 150px; padding-right: 20px;}
+.proj h1 {padding-top: 25px;}
+.space {margin-top: 20px;}
+.proj {height: 150px}
