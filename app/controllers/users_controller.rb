@@ -17,7 +17,9 @@ end
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
+      Systemmailer.newportal_user_notification(@user).deliver
       redirect_to root_url, :notice => "Thank you for signing up! You are now logged in."
+
     else
       render :action => 'new'
     end
@@ -60,6 +62,20 @@ end
 
 end
 
+
+
+  def destroy
+    #@question = Question.find(params[:id])
+    #@question.destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+
+
+      redirect_to users_path
+   
+   
+  end
 
 
 

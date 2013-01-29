@@ -37,4 +37,21 @@ Localisto::Application.configure do
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
+config.action_mailer.delivery_method = :smtp
+# Defaults to:
+ config.action_mailer.smtp_settings =  {
+  :enable_starttls_auto => true,
+  :address        => 'smtp.gmail.com',
+  :port           => 587,
+  :domain         => 'your.domain.com',
+  :authentication => :login,
+  :content_type   => "text/html",
+  :user_name      => 'hello@localisto.org',
+  :password       => 'creativesolutions2600'
+}
+
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+ 
+
 end
