@@ -12,7 +12,7 @@
   
 
 
-
+<%= agency_published_alert(@agency) %>
 
    <div class="field">      
     <%= f.check_box :user_publish%>
@@ -23,9 +23,9 @@
 
 <% if @agency.admin_publish == false %>
 
-    <div class="alert">Once you have pulished your project it must be aprroved before it propagates to the app</div>
+    <div class="alert">Once you have published your agency it must be aprroved before it propagates to the Localisto Platform</div>
     <% elsif @agency.admin_publish == true %>
-    <div class="alert">Your project has been approved for publish! Clicking publish will cause it to propagate to the app</div>
+    <div class="alert">Your project has been approved for publish! Clicking publish will cause it to propagate to the Localisto Platform</div>
     <%end%>
 
 <% if current_user.localisto_staff == 1 %>

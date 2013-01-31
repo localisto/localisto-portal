@@ -5,13 +5,18 @@
 <div class="proj">
 <%= image_tag @project.image %>
 
+
 <h1><%= @project.title%></h1>
   
   <%= @agency.name %>
   <br>	<br>
 <div class="clear"></div>
-<p>
 
+<br><br>
+<%= project_published_alert(@project) %>
+
+
+<p>
   <%= @project.description %>
 </p>
 

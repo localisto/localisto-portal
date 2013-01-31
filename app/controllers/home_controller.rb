@@ -28,7 +28,7 @@ end
 		end
 
 	else
- 		@subnav = []
+
  		@action = 'nologin'
  	
 	end

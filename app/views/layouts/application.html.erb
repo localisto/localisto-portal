@@ -65,7 +65,7 @@
 <div id="submenu">
       <div class="container">
     <ul class="nav nav-pills">
-    <li class="active">
+    <li class="">
  
      <% if @subnav.nil? == false %>
         <% @subnav.each do |anchor, url, cssclass, datatog, id, dcontent, dtitle, rel, place| %>
@@ -73,10 +73,27 @@
         <li><%= link_to anchor, url, :class => cssclass, :rel => rel, :id => id, :data => {:toggle => datatog, :content => dcontent, :placement => place}, "data-original-title" => dtitle%></li> 
 
         <% end %>
+     
+
+        <% if @right_subnav.nil? == false %>
+      <ul class=" nav nav-pills pull-right">
+       
+        <% @right_subnav.each do |anchor, url, cssclass, datatog, id, dcontent, dtitle, rel, place| %>
+
+
+        <li><%= link_to anchor, url, :class => cssclass, :rel => rel, :id => id, :data => {:toggle => datatog, :content => dcontent, :placement => place}, "data-original-title" => dtitle%></li> 
+
+        <% end %>
+      </ul>
 
         <%else%>
-        needs sub nav
+   
         <% end %>
+
+        <%else%>
+   
+        <% end %>
+    
     </ul>
  </div>
 </div>
