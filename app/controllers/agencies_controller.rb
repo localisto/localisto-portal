@@ -47,7 +47,7 @@ end
     
     if localisto_staff?
         @agency = Agency.find(params[:id])
-        @subnav = [['New Project', new_agency_project_path(@agency.id)]]  
+        @subnav = [['New Project', new_agency_project_path(@agency.id)], ["Edit Details", edit_agency_path(@agency)]]  
 
         else
       
