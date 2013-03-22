@@ -44,6 +44,9 @@ class Project < ActiveRecord::Base
     self.description = self.description.gsub("\u2013", "--")
     self.description = self.description.gsub("\u00E9", "e")
     self.description = self.description.gsub("\u00E7", "c")
+    self.description = self.description.gsub("\u2026", "...")
+
+
 
    
 
@@ -52,7 +55,8 @@ class Project < ActiveRecord::Base
     self.title = self.title.gsub("\u2014", "--")
     self.title = self.title.gsub("\u2013", "--")
     self.title = self.title.gsub("\u00E9", "e")
-     self.title = self.title.gsub("\u00E7", "c")
+    self.title = self.title.gsub("\u00E7", "c")
+    self.title = self.title.gsub("\u2026", "...")
 
   end
 
