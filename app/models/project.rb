@@ -36,13 +36,23 @@ class Project < ActiveRecord::Base
   private
 
   def encodetext
+
+    # ---  Some charaters such as ’ and — causes the entire block of text on iphone to not show up --- 
     self.description = self.description.gsub("\u2019", "\u0027")
     self.description = self.description.gsub("\u2018", "\u0027")
     self.description = self.description.gsub("\u2014", "--")
+    self.description = self.description.gsub("\u2013", "--")
+    self.description = self.description.gsub("\u00E9", "e")
+    self.description = self.description.gsub("\u0027", "c")
+
+   
 
     self.title = self.title.gsub("\u2019", "\u0027")
     self.title = self.title.gsub("\u2018", "\u0027")
     self.title = self.title.gsub("\u2014", "--")
+    self.title = self.title.gsub("\u2013", "--")
+    self.title = self.title.gsub("\u00E9", "e")
+     self.title = self.title.gsub("\u0027", "c")
 
   end
 
