@@ -63,8 +63,9 @@
 
 <div class="field">
   <%= f.label :meeting_starts %>
-  <%= f.text_field  :meeting_starts, :id => "meetingstarts", :value => (f.object.meeting_starts.strftime('%m-%d-%Y %I:%M %p') if f.object.meeting_starts)    %> 
+  <%= f.text_field :meeting_starts, :id => "meetingstarts", :value => (f.object.meeting_starts.strftime('%m-%d-%Y %I:%M %p') if f.object.meeting_starts)  %> 
 </div>
+
 
 <div class="field">
  <label>Meeting Time to be Displayed</label>

@@ -6,4 +6,11 @@ en:
 
   time:
     formats:
-      short: "%A, %B %d, %Y at %H:%M %p"
+      default: ! "%m-%d-%Y %I:%M %p"
+      #"%m-%d-%Y %I:%M %p"
+     # "%Y-%m-%d %H:%M:%S"
+      long: ! "%A, %B %d, %Y at %I:%M %p"
+
+ 
+      
+#Thu Mar 21 2013 12:18:06 GMT-0700 (PDT)

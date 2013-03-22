@@ -35,7 +35,7 @@
 <% if @project.meeting_starts.nil? %>
 none
 <% else %>
-<%= l @project.meeting_starts, :format => :short %>
+<%= l @project.meeting_starts, :format => :long %>
 <% end %>	
 </p>
 
@@ -51,7 +51,7 @@ none
 <% if @project.survey_closes.nil? %>
 none
 <% else %>
-<%= l @project.survey_closes, :format => :short %>
+<%= l @project.survey_closes, :format => :long %>
 <% end %>	
 </p>
 <p>

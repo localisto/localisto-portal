@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
 
-before_filter :own_agency
+before_filter :own_agency, :except => [:sort]
 
 def own_agency
   project = Project.find(params[:project_id])

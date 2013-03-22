@@ -1,10 +1,12 @@
 
 class Project < ActiveRecord::Base
-	set_table_name "project"
+	#set_table_name "project"
+  self.table_name = 'project'
 	
 	before_update :update_image_fieldu
   after_create :update_image_field
   before_update :check_publish
+
 	
 	has_many :images, :dependent => :destroy
 	has_many :questions, :dependent => :destroy
@@ -14,7 +16,7 @@ class Project < ActiveRecord::Base
   validates :title, :presence => true
   validates :image, :presence => true
 
-
+  
   attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image, :meeting_time, :user_publish, :admin_publish, :archive 
    
   has_attached_file :image,
@@ -31,6 +33,9 @@ class Project < ActiveRecord::Base
       :convert_options => { :all => '-strip -trim' }
   
 private
+
+
+
   def update_image_field      
   self.grid_image = self.image.url
   self.save
@@ -42,12 +47,18 @@ private
   end
 
 
+def check_publish
 
-    def check_publish
+      if self.user_publish == true and self.admin_publish == true 
+          self.disabled = 0
+      
+      else
+         self.disabled = 1
+     end
 
-      if self.admin_publish == true and self.user_publish == true
-        self.disabled = 0
-      end
     end
+
+
+    
 
 end

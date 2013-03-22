@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-before_filter :own_agency
+before_filter :own_agency, :except => [:sort]
 
 def own_agency
   project = Project.find(params[:project_id])
@@ -27,6 +27,9 @@ end
 def sort
 @project = Project.find(params[:project_id])
 @questions = @project.questions.all
+#params[:questions].each_with_index do |id, index|
+#Question.update_all(['position=?', index+1], ['id=?', id])
+
 @questions.each do |question|
 question.position = params['question'].to_s.index(question.id.to_s).to_i + 1
 question.save

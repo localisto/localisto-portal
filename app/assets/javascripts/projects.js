@@ -4,11 +4,23 @@
 
 $(document).ready(function() {
  $("#surveyclose").AnyTime_picker(
-   { format: "%m-%d-%Y %h:%i %p"} );
+   { format: "%d-%m-%Y %h:%i %p"} );
 
     $("#meetingstarts").AnyTime_picker(
-      { format: "%m-%d-%Y %h:%i %p"} );
+      { format: "%d-%m-%Y %h:%i %p"} );
 });
+
+
+//$(document).ready(function() {
+ 
+//$("input#meetingstarts").change(function(){
+ //   timefrombox = $("input#meetingstarts").val();
+  //  value = dateFormat("dddd, mmmm dS, yyyy, h:MM:ss TT")
+   //var now = new Date();
+ // $(".msl").html(now);
+//});
+
+//});
 
  $(document).ready(function(){
 

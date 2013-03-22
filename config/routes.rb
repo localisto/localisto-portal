@@ -56,7 +56,7 @@ end
 
   resources :projects do 
     resources :questions do
-       post :sort, on: :collection
+         post :sort, on: :collection
 # ruby 1.8 would go :on => :collection
 end
 end
