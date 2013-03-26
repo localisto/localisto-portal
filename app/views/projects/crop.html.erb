@@ -2,18 +2,25 @@
 <%= stylesheet_link_tag "jcrop/jquery.Jcrop" %>
 <%= javascript_include_tag "jcrop/jquery.Jcrop.min" %>
 <script type="text/javascript" charset="utf-8">
+
+
 $(function() {
+
+
   $('#cropbox').Jcrop({
     onChange: update_crop,
     onSelect: update_crop,
     setSelect: [0, 0, 500, 500],
-    aspectRatio: 1
+    aspectRatio: .9349,
+
   });
+
 });
 
+
 function update_crop(coords) {
-  var rx = 100/coords.w;
-  var ry = 100/coords.h;
+  var rx = 230/coords.w;
+  var ry = 246/coords.h;
   $('#preview').css({
     width: Math.round(rx * <%= @project.image_geometry(:large).width %>) + 'px',
     height: Math.round(ry * <%= @project.image_geometry(:large).height %>) + 'px',
@@ -31,12 +38,17 @@ function update_crop(coords) {
 
 
 <h1> Crop </h1>
+<p> Please crop the image for best results</p>
 
 <%= image_tag @project.image.url(:large), :id => "cropbox" %>
+
+
 
 <%= form_for ([@agency,@project]) do |f| %>
   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
     <%= f.hidden_field attribute, :id => attribute %>
   <% end %>
-  <p><%= f.submit "Crop" %></p>
+  <br>
+  <p><%= f.submit "Crop", :class=>'btn btn-primary' %></p>
 <% end %>
+
