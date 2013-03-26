@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   after_create :update_image_field
   before_update :check_publish
   before_save :encodetext
+  after_update :reprocess_image, :if => :cropping?
 
 
   has_many :images, :dependent => :destroy
@@ -17,23 +18,43 @@ class Project < ActiveRecord::Base
   validates :title, :presence => true
   validates :image, :presence => true
 
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image, :meeting_time, :user_publish, :admin_publish, :archive, :crop_x, :crop_y, :crop_w, :crop_h
 
-  attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image, :meeting_time, :user_publish, :admin_publish, :archive
 
   has_attached_file :image,
-    :storage => 's3',
-    :s3_credentials => "config/config.yml",
-    :bucket => 'localisto-app',
-    :s3_host_alias => 'cdn.localisto.org',
-    :url => ':s3_alias_url',
-    :path => "/grid_images/:style/:id/:filename",
-    :styles => { :thumb  => '120x120#' },
-    :default_style => :original,
-    :default_url => 'http://localisto.org/pixel.gif',
-    :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
-    :convert_options => { :all => '-strip -trim' }
+    #:storage => 's3',
+    #:s3_credentials => "config/config.yml",
+    #:bucket => 'localisto-app',
+    #:s3_host_alias => 'cdn.localisto.org',
+    #:url => ':s3_alias_url',
+    #:path => "/grid_images/:style/:id/:filename",
+    :styles => { :thumb  => '230x246#', :large => '500x500>' },
+    #:default_style => :original,
+    #:default_url => 'http://localisto.org/pixel.gif',
+    #:s3_headers => { 'Expires' => 1.year.from_now.httpdate },
+    #:convert_options => { :all => '-strip -trim' },
+    :processors => [:cropper]
+
+
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def image_geometry(style = :original)
+    @geometry ||= {}
+    #path = (image.options[:storage]==:s3) ? image.url(style) : image.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(image.path(style))
+    #"http://cdn.localisto.org" + 
+  end
+
 
   private
+
+    def reprocess_image
+    image.reprocess!
+  end
 
   def encodetext
 
@@ -46,9 +67,6 @@ class Project < ActiveRecord::Base
     self.description = self.description.gsub("\u00E7", "c")
     self.description = self.description.gsub("\u2026", "...")
 
-
-
-   
 
     self.title = self.title.gsub("\u2019", "\u0027")
     self.title = self.title.gsub("\u2018", "\u0027")

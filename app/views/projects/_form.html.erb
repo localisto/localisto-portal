@@ -1,9 +1,6 @@
 </div>
 
 
-
-
-
   <%= form_for([@agency,@project]) do |f| %>
   <% if @project.errors.any? %>
   <div id="error_explanation">
@@ -30,7 +27,7 @@
 
   <div class="field">
     <div class="proj">
-<%= image_tag @project.image %>
+<%= image_tag @project.image(:thumb) %>
 
 
     <lable>Image for Grid Screen (Size W230 x H246)</lable><br />

@@ -28,7 +28,12 @@ group :assets do
 end
 
 gem "jquery-rails", "~> 2.1.1"
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 3.1.4"
+#gem "paperclip", "~> 3.4.1"
+#gem 'cocaine', '0.3.2'
+gem "cocaine", "= 0.3.2"
+#gem "paperclip"
+gem 'rmagick'
 
 gem "aws-sdk"
 
