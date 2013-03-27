@@ -1,0 +1,26 @@
+# config/application.yml
+defaults: &defaults
+
+
+
+development:
+  <<: *defaults
+  api_host: http://pairwise-api.localisto.net
+  api_user_email: localisto@localisto.org
+  api_user_password: 8FA79096C01
+  facebook_app_id: 553155921375315
+  facebook_secret: acb1c2dedac2c39913ccb82e2cb0666e
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  api_host: http://pairwise-api.localisto.net
+  api_user_email: localisto@localisto.org
+  api_user_password: 8FA79096C01
+  facebook_app_id: 123681914484962
+  facebook_secret: 825cbd93320076de39c9d0e3f83a4151
+
+cucumber:
+  <<: *defaults

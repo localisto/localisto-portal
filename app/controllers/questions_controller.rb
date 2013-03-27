@@ -90,16 +90,19 @@ def show
     @project = Project.find(params[:project_id])
     @question = @project.questions.build(params[:question])
 
+    if @question.save
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Question was successfully created.' }
-        format.json { render json: @question, status: :created, location: @question }
+      if params[:question][:qtype] == '3'
+          render action: "aoiquestion"
+        else
+        redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Question was successfully created.' 
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+
+        redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Question was NOT successfully created.' 
+ 
       end
-    end
+
   end
 
   # PUT /questions/1

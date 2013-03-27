@@ -12,6 +12,7 @@ gem "acts_as_list"
 gem 'therubyracer'
 gem "jquery-ui-rails", "~> 3.0.1"
 gem 'bootstrap-sass'
+  gem "settingslogic", "~> 2.0.9"
 
 # Gems used only for assets and not required
 # in production environments by default.

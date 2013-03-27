@@ -73,6 +73,9 @@ resources :agencies do
 end
 
 
+resources :questions do
+    resources :aoiquestions
+end
 
 
 
