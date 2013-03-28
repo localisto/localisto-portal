@@ -11,6 +11,7 @@ class Question < ActiveRecord::Base
   belongs_to :project
   has_many :responces, :dependent => :destroy
 
+
  
   attr_accessible :aoi_id, :description, :image, :sort_order, :qtype, :project_id, :image_url
   has_attached_file :image,

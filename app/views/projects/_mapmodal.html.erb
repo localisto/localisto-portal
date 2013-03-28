@@ -1,0 +1,144 @@
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        initialize();
+    }
+</script>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+  google.maps.event.trigger(map, 'resize')
+ });
+ </script>
+<script type="text/javascript"> 
+
+  
+
+//<![CDATA[
+
+     // global "map" variable
+      var map = null;
+      var marker = null;
+
+var infowindow = new google.maps.InfoWindow(
+  { 
+    size: new google.maps.Size(400,50)
+
+  });
+
+// A function to create the marker and set up the event window function 
+function createMarker(latlng, name, html) {
+    var contentString = html;
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+
+
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+        });
+    google.maps.event.trigger(marker, 'click');    
+    return marker;
+}
+
+ 
+
+function initialize() {
+  // create the map
+  var myOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(<%= @project.coordinates.blank? ? "47.60292227835496, -122.33345031738281" : @project.coordinates %> ),
+    mapTypeControl: true,
+    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+    navigationControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+
+  }
+
+
+var marker =new google.maps.LatLng(<%= @project.coordinates %>);
+
+  map = new google.maps.Map(document.getElementById("map_canvas"),
+                                myOptions);
+
+ 
+       
+        
+     var marker=new google.maps.Marker({
+  position:marker,
+  });
+
+  marker.setMap(map);
+
+	// marker = createMarker(event.latLng);
+  
+
+  google.maps.event.addListener(map, 'click', function() {
+        infowindow.close();
+        });
+
+  google.maps.event.addListener(map, 'click', function(event) {
+	//call function to create marker
+         if (marker) {
+            marker.setMap(null);
+            marker = null;
+         }
+	 marker = createMarker(event.latLng);
+	 
+  });
+  
+   google.maps.event.addListener(map, 'click', function(event) { 
+	
+
+
+$('#coordinates').val(event.latLng); 
+});
+
+
+
+}
+    
+
+
+//]]>
+</script> 
+
+<div id="mapmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Map</h3>
+</div>
+<div class="modal-body">
+
+        
+      
+         
+    <noscript><p><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
+      However, it seems JavaScript is either disabled or not supported by your browser. 
+      To view Google Maps, enable JavaScript by changing your browser options, and then 
+      try again.</p>
+    </noscript> 
+
+
+   
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+
+</div>
+</div>
+
+

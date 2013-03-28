@@ -76,6 +76,12 @@ class Project < ActiveRecord::Base
     self.title = self.title.gsub("\u00E7", "c")
     self.title = self.title.gsub("\u2026", "...")
 
+
+
+#----- Remove Parentheses from coordinates supplied by google maps --#
+    self.coordinates = self.coordinates.gsub("(", "")
+      self.coordinates = self.coordinates.gsub(")", "")
+
   end
 
 

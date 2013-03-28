@@ -14,13 +14,14 @@ gem "jquery-ui-rails", "~> 3.0.1"
 gem 'bootstrap-sass'
   gem "settingslogic", "~> 2.0.9"
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.1'
 
-  
+  gem 'thin' 
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -39,6 +40,8 @@ gem 'rmagick'
 gem "aws-sdk"
 
 gem "nifty-generators", :group => :development
+
+gem 'quiet_assets', :group => :development
 	
 
 

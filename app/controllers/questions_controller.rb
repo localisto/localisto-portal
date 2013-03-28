@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-before_filter :own_agency, :except => [:sort]
+before_filter :own_agency, :except => [:sort, :reorder]
 
 def own_agency
   project = Project.find(params[:project_id])
@@ -90,12 +90,13 @@ def show
     @project = Project.find(params[:project_id])
     @question = @project.questions.build(params[:question])
 
-    if @question.save
+      if @question.save
 
       if params[:question][:qtype] == '3'
-          render action: "aoiquestion"
+          redirect_to new_question_aoiquestion_path(@question)
+          
         else
-        redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Question was successfully created.' 
+        redirect_to project_question_path(@project.id, @question), notice: 'Question was successfully created.' 
         end
       else
 

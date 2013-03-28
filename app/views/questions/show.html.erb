@@ -27,7 +27,10 @@ Question is a <%= qtypera(@question.qtype) %>
 <% end %>
 
 
+
 </div>
+
+<%= link_to 'Permanently Delete', project_question_path(@project, @question), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <div class="span6">
 	<h1>Responces</h1>
