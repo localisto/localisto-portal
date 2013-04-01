@@ -6,3 +6,26 @@ body { padding: 0px; padding-top: 0px; }
 
 .navbar {
     margin-bottom: 0px;}
+
+.navbar-inverse .navbar-inner {
+	background-color: #9BC12B;
+	background-image: linear-gradient(to bottom, #9BC12B, #9BC12B);
+    background-repeat: repeat-x;
+    border-color: #9BC12B;
+    color: white;
+}
+
+.navbar-inverse .navbar-inner a, .navbar-inverse .navbar-inner li a{
+	color: white;
+}
+
+div.navbar div.navbar-inner a.brand:hover {
+	background-color: #9BC12B;
+}
+
+.navbar-inverse .divider-vertical { border:none;   
+	border-left-color: #111111;
+    border-right-color: #222222;
+}
+
+
