@@ -27,16 +27,17 @@ class ProjectsController < ApplicationController
 
     @project = @agency.projects.find(params[:id])
 
-    @subnav = [["Back", agency_path(@agency), "btn back"], ["Edit Details", edit_agency_project_path(@agency)], ["Edit Images", project_images_path(@project)], ["Add Image", new_project_image_path(@project)], ['Add Question', new_project_question_path(@project)], ['Edit Question', project_questions_path(@project)]]
-    @right_subnav = [['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]
+    @subnav = [["Back", agency_path(@agency), "btn back"]]
+    #@subnav = [["Back", agency_path(@agency), "btn back"], ["Edit Details", edit_agency_project_path(@agency)], ["Edit Images", project_images_path(@project)], ["Add Image", new_project_image_path(@project)], ['Add Question', new_project_question_path(@project)], ['Edit Question', project_questions_path(@project)]]
+    #@right_subnav = [['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]
 
   end
 
   def edit
 
     @project = @agency.projects.find(params[:id])
-
-    @subnav = [['Back', agency_project_path(@agency, @project), "btn back"], ['Add Image', new_project_image_path(@project)]]
+    @subnav = [["Back", :back, "btn back"]]
+    #@subnav = [['Back', agency_project_path(@agency, @project), "btn back"], ['Add Image', new_project_image_path(@project)]]
 
   end
 
@@ -77,7 +78,10 @@ end
 
   end
 
-
+def surveytime
+@project = @agency.projects.find(params[:id])
+@subnav = [['Back', agency_project_path(@agency, @project), "btn back"]]
+end
 
 
   def create
@@ -95,4 +99,5 @@ end
     end
 
 end
+
 end

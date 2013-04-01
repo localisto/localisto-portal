@@ -11,8 +11,9 @@ Localisto::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-    match 'letsgetstarted' => 'home#letsgetstarted', :as => :letsgetstarted
-
+  match 'letsgetstarted' => 'home#letsgetstarted', :as => :letsgetstarted
+  
+  match 'agencies/:agency_id/projects/:id/surveytime' => 'projects#surveytime', :as => :surveytime
   #match 'users/:id/edituser' => 'users#adminedit', :as =>:adminedit
    #match 'users/:id/adminedit' => 'users#adminupdate', :as =>:adminupdate
 #match 'users/:id/adminupdate' => 'users#adminupdate', :as =>:adminupdate
@@ -74,7 +75,9 @@ end
 
 
 resources :questions do
-    resources :aoiquestions
+    resources :aoiquestions do
+      resources :aoichoices
+    end
 end
 
 

@@ -17,15 +17,15 @@
 <%if @question.qtype == '1' %>
 
 <div class="field">
-    <%= f.label :aimage %>
+  <%= image_tag @question.image(:thumb) %>
+  <br><br>
+    <label>Upload a new Image</label>
     <%= f.file_field :aimage %>
+    <br><br><br>
   </div>
 
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
+
 
 <% elsif @question.qtype == '2' %>
 

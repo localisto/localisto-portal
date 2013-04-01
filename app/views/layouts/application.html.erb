@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Localisto</title>
+  <title>Localisto Dashboard</title>
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%# javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" %>
@@ -20,65 +20,62 @@
 
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-  <div class="container">
-        <a class="brand" href="/">Localisto Admin Portal</a>
-        <ul class="nav">
-
-          
-          
-        </ul>
-
-<ul class="nav pull-right">
-                      <% if logged_in? %>
-  
-   <li > <%= link_to "Edit profile", edit_current_user_path %></li> 
-   <li > <%= link_to "Log out", logout_path %></li>
-  <% else %>
-
-   <li >  <%= link_to "Sign up", signup_path %></li>
-    
-   <li > <a href="#myModal" data-toggle="modal">Log In</a></li>
-   <% end %> 
-                      
-    <% if localisto_staff? %>
-                      <li class="divider-vertical"></li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                         <li><a href="/agencies/">All Agencies</a></li>
-                         
-                          <li class="divider"></li>
-                          <li><a href="/appusers">Manage App Users</a></li>
-                         <li><a href="/users">Manage Portal Users</a></li> 
-                        </ul>
-                      </li>
-                      <% end %>
-                    </ul>
-       
-           
-          
-      
-      </div>
-
-    </div>
-  </div>
-
-<div id="submenu">
       <div class="container">
-    <ul class="nav nav-pills">
-    <li class="">
- 
-     <% if @subnav.nil? == false %>
-        <% @subnav.each do |anchor, url, cssclass, datatog, id, dcontent, dtitle, rel, place| %>
+        <a class="brand" href="/">Localisto Dashboard</a>
 
-        <li><%= link_to anchor, url, :class => cssclass, :rel => rel, :id => id, :data => {:toggle => datatog, :content => dcontent, :placement => place}, "data-original-title" => dtitle%></li> 
 
-        <% end %>
-     
+        <ul class="nav"></ul>
 
-        <% if @right_subnav.nil? == false %>
-      <ul class=" nav nav-pills pull-right">
+        <ul class="nav pull-right">
+          <% if logged_in? %>
+          <li > <%= link_to "Edit profile", edit_current_user_path %></li> 
+          <li > <%= link_to "Log out", logout_path %></li>
+          <% else %>
+
+          <li >  <%= link_to "Sign up", signup_path %></li>
+
+          <li > <a href="#myModal" data-toggle="modal">Log In</a></li>
+          <% end %> 
+
+          <% if localisto_staff? %>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+             <li><a href="/agencies/">All Agencies</a></li>
+
+             <li class="divider"></li>
+             <li><a href="/appusers">Manage App Users</a></li>
+             <li><a href="/users">Manage Portal Users</a></li> 
+           </ul>
+         </li>
+         <% end %>
+       </ul>
        
+
+
+
+     </div>
+
+   </div>
+ </div>
+
+ <div id="submenu">
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="">
+
+       <% if @subnav.nil? == false %>
+       <% @subnav.each do |anchor, url, cssclass, datatog, id, dcontent, dtitle, rel, place| %>
+
+       <li><%= link_to anchor, url, :class => cssclass, :rel => rel, :id => id, :data => {:toggle => datatog, :content => dcontent, :placement => place}, "data-original-title" => dtitle%></li> 
+
+       <% end %>
+
+
+       <% if @right_subnav.nil? == false %>
+       <ul class=" nav nav-pills pull-right">
+
         <% @right_subnav.each do |anchor, url, cssclass, datatog, id, dcontent, dtitle, rel, place| %>
 
 
@@ -87,42 +84,39 @@
         <% end %>
       </ul>
 
-        <%else%>
-   
-        <% end %>
+      <%else%>
 
-        <%else%>
-   
-        <% end %>
-    
+      <% end %>
+
+      <%else%>
+
+      <% end %>
+
     </ul>
- </div>
+  </div>
 </div>
 
-      <% if logged_in? %>
-      <%else%>     
-  <%= render :partial => "sessions/loginmodal" %>
+<% if logged_in? %>
+<%else%>     
+<%= render :partial => "sessions/loginmodal" %>
 <% end %>
 
-  <div class="container">
-    <div class="row">
-      <%= render 'layouts/flash_messages' %>
-     <!-- <div class="alert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Localisto Portal - Beta Version</strong> <br>We're currently under construction, please contact Jackie at <a href="mailto:Jackie@localisto.org">Jackie@localisto.org</a> if we can help you navigate the site or to provide feedback!
-      </div> -->
-    </div>
-
-    <div class="row">
-
-
-      <%= yield %>
-
-
-    </div>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/flash_messages' %>
   </div>
 
-  <div id="footer"><div class="container"></div></div>
+  
+
+
+    <%= yield %>
+
+
+  
+  
+</div>
+
+<div id="footer"><div class="container"></div></div>
 
 </body>
 </html>

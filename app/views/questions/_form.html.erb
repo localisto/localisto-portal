@@ -1,5 +1,4 @@
-<%= form_for ([@project, @question]), :html => { :multipart => true } do |f| %>
-<%# form_for(@question) do |f| %>
+<%= form_for ([@project, @question]), :html => { :multipart => true, :id => "myform"  } do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -17,42 +16,79 @@
 
 .dshow {display: block;}
 .dhide {display: none}
+.qtypewrap {height: 85px}
 
   </style>
 
-  <div class="field">
-    <%= f.label :qtype %>
-    <%= f.select(:qtype, options_for_select([['Image Prompt', 1], ['Text Prompt', 2], ['Pairwise', 3]],@question.qtype)) %>
- </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
 
 
-  <div id="qtype1" class="dhide">
-<div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-</div>
+
+<div class="row">
+	<div class="span6">
+
+	  <div class="field">
+	    <label>Question Type</label>
+	    <%= f.select(:qtype, options_for_select([['Image Prompt', 1], ['Text Prompt', 2], ['Pairwise', 3]],@question.qtype)) %>
+	 </div>
+
+	  <div class="field">
+	    <label>Question</label>
+	    <%= f.text_area :description%>
+	  </div>
+
+<div class="qtypewrap">
+	  <div id="qtype1" class="dhide">
+		  <div class="field">
+	    <%= f.label :image %>
+	    <%= f.file_field :image %>
+	  </div>
+	</div>
   
-  <div id="qtype2" class="dhide">
- 
-  </div>
+  <div id="qtype2" class="dhide"></div>
 
 <div id="qtype3" class="dhide">
-<p> Enter your Question above and press "Create Question".  On the next page you can add the ideas to complete your question
+<p> Enter your Question above and press "Create Question".  On the next page you can add the ideas to complete your question</p>
 </div>
-  
+
+</div>
+
   <div class="actions">
-    <%= f.submit :class=>'btn btn-primary' %>
+    <%= f.submit :class=>'btn btn-primary btn-large' %><%= image_tag "loading.gif", :id => "loading_image" %>
   </div>
+</div>
 <% end %>
+	
+
+<div class="span6">
+
+<div id="qtype1e" class="dhide">
+<%= image_tag "qtypeone.png" %>
+An image prompted question shows an image as the "question" and the responses to the question are in the form of text.  The respondent views an image and chooses which block of text they think best matches the image.
+</div>
+
+<div id="qtype2e" class="dhide">
+<%= image_tag "qtypetwo.png" %>
+A text prompted question asks the question using text and the responses are in the form of images.  The respondent views a block of text and then chooses and image they think is the best match. 
+</div>
+
+<div id="qtype3e" class="dhide">
+<%= image_tag "qtypethree.png" %>
+</div>
+
+</div>
+</div>
+
 
 
 <script>
+
+$(function() {
+$('#myform').submit(function() {
+    $('#loading_image').show(); // show animation
+    return true; // allow regular form submission
+});
+});
+
 $(document).ready(function() {
       
   loadval = $('#question_qtype :selected').val(); 
@@ -61,18 +97,30 @@ $(document).ready(function() {
       $("#qtype2").fadeOut("fast");
       $("#qtype3").fadeOut("fast");
       $("#qtype1").delay(400).fadeIn("slow");
+
+      $("#qtype2e").fadeOut("fast");
+      $("#qtype3e").fadeOut("fast");
+      $("#qtype1e").delay(400).fadeIn("slow");
     }
                                  
        if (loadval == 2) {
       $("#qtype1").fadeOut("fast");
       $("#qtype3").fadeOut("fast");
       $("#qtype2").delay(400).fadeIn("slow");
+
+      $("#qtype1e").fadeOut("fast");
+      $("#qtype3e").fadeOut("fast");
+      $("#qtype2e").delay(400).fadeIn("slow");
        }
                   
      if (loadval == 3) {
       $("#qtype1").fadeOut("fast");
       $("#qtype2").fadeOut("fast");
       $("#qtype3").delay(400).fadeIn("slow");
+
+       $("#qtype1e").fadeOut("fast");
+      $("#qtype2e").fadeOut("fast");
+      $("#qtype3e").delay(400).fadeIn("slow");
      }
       
 
@@ -84,18 +132,27 @@ $(document).ready(function() {
       $("#qtype2").fadeOut("fast");
       $("#qtype3").fadeOut("fast");
       $("#qtype1").delay(400).fadeIn("slow");
+          $("#qtype2e").fadeOut("fast");
+      $("#qtype3e").fadeOut("fast");
+      $("#qtype1e").delay(400).fadeIn("slow");
     }
                                  
        if (choice_val == 2) {
       $("#qtype1").fadeOut("fast");
       $("#qtype3").fadeOut("fast");
       $("#qtype2").delay(400).fadeIn("slow");
+            $("#qtype1e").fadeOut("fast");
+      $("#qtype3e").fadeOut("fast");
+      $("#qtype2e").delay(400).fadeIn("slow");
        }
                   
      if (choice_val == 3) {
       $("#qtype1").fadeOut("fast");
       $("#qtype2").fadeOut("fast");
       $("#qtype3").delay(400).fadeIn("slow");
+            $("#qtype1e").fadeOut("fast");
+      $("#qtype2e").fadeOut("fast");
+      $("#qtype3e").delay(400).fadeIn("slow");
      }
        
          });

@@ -60,10 +60,8 @@ end
 
     @subnav = [['Back', agency_project_path(@project.agency_id, @project), "btn back"]]
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @image }
-    end
+
+   
   end
 
   # GET /images/1/edit
@@ -82,18 +80,18 @@ end
     @project = Project.find(params[:project_id])
     @image = @project.images.build(params[:image])
 
-
-
-        respond_to do |format|
       if @image.save
+              if params[:image][:image].blank?
      
-        format.html { redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Image was successfully created.' }
-        format.json { render json: [@project], status: :created, location: @image }
+        redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Image was successfully created.' 
       else
-        format.html { render action: "new" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+        render action: "crop"
       end
-    end
+
+      else
+        render action: "new" 
+      end
+   
   end
 
   # PUT /images/1
@@ -102,15 +100,18 @@ end
     @project = Project.find(params[:project_id])
     @image = @project.images.find(params[:id])
 
-    respond_to do |format|
+   
       if @image.update_attributes(params[:image])
-        format.html { redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Image was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+         if params[:image][:image].blank?
+      redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Image was successfully updated.' 
+        else
+        render action: "crop"
       end
-    end
+
+      else
+        render action: "edit" 
+      end
+  
   end
 
   # DELETE /images/1

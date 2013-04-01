@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div id="publish" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Publish</h3>
+</div>
+<div class="modal-body">
+
+
+  <% if @agency.disabled == true %>
+<div class="alert error">The Agency that controls this project has not been published yet.  You must publish the agency before you can publish this project</div>
+  <%else%>
+  <% end %>
+ <%= form_for([@agency,@project]) do |f| %>
+
+<div class="field">
+
+   <%= project_published_alert(@project) %>
+   
+      
+    <%= f.check_box :user_publish, :class => "checkbox inline"%>
+
+    <lable class="">Publish </lable> <br>
+    <br>
+  
+</div>
+
+<% if current_user.localisto_staff == 1 %>
+<div class="well">
+  <h2> Adminstative </h2>
+  <div class="field">
+    <%= f.check_box :admin_publish%>
+    <lable class="checkbox inline">Approve Publish </lable>
+
+
+</div>
+  </div>
+  <% end %>
+
+
+
+</div>
+<div class="modal-footer">
+  <p class="fleft"></p>
+
+
+<%= submit_tag "Save", :class=>'btn btn-primary'%>
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<% end %>
+</div>
+</div>

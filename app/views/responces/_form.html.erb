@@ -1,4 +1,4 @@
-<%= form_for ([@question,@responce]), :html => { :multipart => true } do |f| %>
+<%= form_for ([@question,@responce]), :html => { :multipart => true, :id => "myform"  } do |f| %>
 <%# form_for(@responce) do |f| %>
   <% if @responce.errors.any? %>
     <div id="error_explanation">
@@ -35,17 +35,17 @@ You cannot add a responce to a pairwise question using this portal
 
 
 
-
-
-
-
-
-
-
-  
-
-
   <div class="actions">
-    <%= f.submit :class=>'btn btn-primary' %>
+    <%= f.submit :class=>'btn btn-primary' %><%= image_tag "loading.gif", :id => "loading_image" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(function() {
+$('#myform').submit(function() {
+    $('#loading_image').show(); // show animation
+    return true; // allow regular form submission
+});
+});
+  
+</script>

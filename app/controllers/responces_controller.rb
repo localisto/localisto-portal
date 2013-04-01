@@ -68,34 +68,44 @@ end
   def create
     @question = Question.find(params[:question_id])
     @responce = @question.responces.build(params[:responce])
-    #@responce = Responce.new(params[:responce])
 
-    respond_to do |format|
+
       if @responce.save
-        format.html { redirect_to project_question_path(@question.project_id, @question.id), notice: 'Responce was successfully created.' }
-        format.json { render json: @responce, status: :created, location: @responce }
+          if params[:responce][:image].blank?
+
+       redirect_to project_question_path(@question.project_id, @question.id), notice: 'Responce was successfully created.' 
+       else
+        render action: "crop"
+      end
+
       else
-        format.html { render action: "new" }
-        format.json { render json: @responce.errors, status: :unprocessable_entity }
+       render action: "new" 
       end
     end
-  end
+
 
   # PUT /responces/1
   # PUT /responces/1.json
   def update
+     @question = Question.find(params[:question_id])
     @responce = Responce.find(params[:id])
-
-    respond_to do |format|
+    
       if @responce.update_attributes(params[:responce])
-        format.html { redirect_to [@question,@responce], notice: 'Responce was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @responce.errors, status: :unprocessable_entity }
+           if params[:responce][:image].blank?
+              redirect_to [@question,@responce], notice: 'Responce was successfully updated.' and return
+        else
+        render action: "crop" and return
+              redirect_to @question, notice: 'Responce was successfully updated.' 
+
+        end
       end
-    end
-  end
+      else
+      redirect_to @question, notice: 'Responce was successfully updated.' and return
+
+        #render action: "edit" and return
+      end
+   
+  
 
   # DELETE /responces/1
   # DELETE /responces/1.json

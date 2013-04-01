@@ -2,7 +2,7 @@
 <ul>
 
 <% @aoiquestions.each do |q| %>  
-<li> <%= q.attributes["name"] %> </li>
+<li><b><%= q.id %></b> - <%= q.attributes["name"] %> </li>
 <% end %>
 </ul>
 

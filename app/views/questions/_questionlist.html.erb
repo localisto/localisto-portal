@@ -1,19 +1,18 @@
 
 <table class="table">
   <tr>
+     <th>Description</th>
     <th>Prompt</th>
-    <th>Description</th>
-    <th>Sort Order</th>
-    <th></th>
+   
+
 
   </tr>
 
 <% @questions.each do |question| %>
   <tr>
+      <td><%= link_to question.description, project_question_path(@project.id, question.id) %></td>
     <td><%= qtyper(question.qtype) %></td>
-    <td><%= question.description %></td>
-    <td><%= question.position%></td>
-    <td><%= link_to "Show", project_question_path(@project.id, question.id) %></td>
+  
   </tr>
 <% end %>
 </table>

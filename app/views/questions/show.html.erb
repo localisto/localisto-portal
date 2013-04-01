@@ -1,42 +1,72 @@
 
+<div class="row">
 <div class="span6">
 
 
-<h1>Question</h1>
-Question is a <%= qtypera(@question.qtype) %>
-<br><br>
+<h1>Survey Question</h1>
+
+
 <% if @question.qtype.to_i == 1 %>
 <p>
 
-  <%= image_tag @question.image %>
+  <%= image_tag @question.image(:thumb) %>
 </p>
 <% end %>
 
 <% if @question.qtype.to_i == 2 %>
-<p>
-  <b>Description:</b>
-  <%= @question.description %>
+<p style="margin-top: 40px; padding-left: 40px; padding-right: 40px;">
+  <b><%= @question.description %></b>
 </p>
 <% end %>
 
 <% if @question.qtype.to_i == 3 %>
-<p>
-  <b>All Our Idea Url</b>
-  <%= @question.aoi_id %>
+<p style="margin-top: 40px; padding-left: 40px; padding-right: 40px;">
+  
+  <b><%= @question.description %></b>
 </p>
 <% end %>
 
+</div>
 
+<div class="span6 menu">
+<p style="margin-top: 70px; padding-left: 40px;">The question prompt is a <%= qtypera(@question.qtype) %><p>
+<% if @question.qtype.to_i == 2 || @question.qtype.to_i == 1 %>
+<%= link_to "Edit Question Promt", edit_project_question_path(@question.project_id, @question) %>
+<% else %>
+<p style="margin-top: 10px; padding-left: 40px;">Pairwise question cannot be edited after they have been created</p>
+<% end %>
 
 </div>
 
-<%= link_to 'Permanently Delete', project_question_path(@project, @question), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+
+<hr>
+<div class="row">
+
+<!-- <%= link_to 'Permanently Delete', project_question_path(@project, @question), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %> -->
 
 <div class="span6">
-	<h1>Responces</h1>
 
 <% @responces = @question.responces.all %>
 <%= render "responces/responcelist" %>
+</div>
+
+<div class="span6 menu">
+
+<%if @question.qtype == '3' %>
+ <p style="margin-top: 100px; padding-left: 40px;">This is a pairwise survey</p>
+<%else%>
+<% if @question.qtype == '1' %> 
+<p style="margin-top: 100px; padding-left: 40px;">Responses are text</p>
+<% elsif @question.qtype == '2' %>
+<p style="margin-top: 100px; padding-left: 40px;">Responses are images</p>
+<% end %>
+
+	<%= link_to "Add Response", new_question_responce_path(@question.id) %><br>
+	<%= link_to "Reorder Response", question_responces_path(@question) %><br>
+	<%= link_to "Choose Response to Delete", question_responces_path(@question) %>
+	<% end %>
+	
 </div>
 
 

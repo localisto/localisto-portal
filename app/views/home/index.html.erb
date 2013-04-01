@@ -31,17 +31,35 @@ do so by clicking the 'Create New Agency Button'</h4>
         max-width: 100%;
     } 
     #submenu {display: none}
-    .space {margin-top: 80px;}
+    .space {margin-top: 130px;}
 </style>	
 <div class="row space">
 
-	<div class="span6 offset1">
-		<h1>Localisto Agencies Management</h1>
+	<div class="span3">
+
+		<%= image_tag "iphone.png", :style => "padding-top: 40px;" %>
+	</div>
+
+		<div class="span5" style="padding: 40px;">
+<br><br>
+		<h4> Welcome to the Localisto Dashboard </h4>
+		<br><br>
+		<p><b>Localisto is </b>
+		 a new way to discover your community. Find topics and events that matter to you with location-based search and preference filters. Engage by contributing your feedback with interactive surveys. <a href="http://localisto.org">Learn more here</a></p>
+		 <br>
+		<p><b>Our Dashboard </b>
+		 is used by our customers to upload information, images and surveys to the Localisto platform</p><br>
+		 <p><b>Create an account </b>
+		 and start learning how Localisto can help you in your community.</p>
+
+
 	</div>
 		<div class="span3">
 <div class="well">
-	<p>Already have an account? <a href="#myModal" data-toggle="modal">Log In</a>.</p>
-	<hr>
+	<p>Already have an account? <br><br> <b><a href="#myModal" data-toggle="modal">Click here to Log In</a></b>.</p>
+</div>
+<div class="well">
+	<H5>Create an account today!</H5>
 <%= render :partial => "users/form", :locals => {:@user => User.new} %>
 
 </div>

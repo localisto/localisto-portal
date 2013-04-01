@@ -6,7 +6,7 @@
         <% @images.each do |image| %>
         <% if i == 0 %>
         
-        <div class="active item"><%= image_tag image.image.url %>
+        <div class="active item"><%= image_tag image.image.url(:thumb) %>
             <div class="carousel-caption">
                <ul class="carousellist">
                    
@@ -19,7 +19,7 @@
             <% i = i + 1 %>
 
             <% else %>
-            <div class="item"><%= image_tag image.image.url %>
+            <div class="item"><%= image_tag image.image.url(:thumb) %>
                <div class="carousel-caption">
                    <ul class="carousellist">
                        <li><%=link_to edit_project_image_path(@project.id, image.id) do %><i class="icon-edit icon-white"></i>

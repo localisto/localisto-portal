@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   before_update :update_image_fieldu
   after_create :update_image_field
   before_update :check_publish
-  before_save :encodetext
+  before_save :housekeeping
   after_update :reprocess_image, :if => :cropping?
 
 
@@ -56,7 +56,7 @@ class Project < ActiveRecord::Base
     image.reprocess!
   end
 
-  def encodetext
+  def housekeeping
 
     # ---  Some charaters such as ’ and — causes the entire block of text on iphone to not show up --- 
     self.description = self.description.gsub("\u2019", "\u0027")
@@ -78,9 +78,16 @@ class Project < ActiveRecord::Base
 
 
 
-#----- Remove Parentheses from coordinates supplied by google maps --#
-    self.coordinates = self.coordinates.gsub("(", "")
-      self.coordinates = self.coordinates.gsub(")", "")
+#----- Remove Parentheses from coordinates supplied by google maps api --#
+   # self.coordinates = self.coordinates.gsub("(", "")
+   #   self.coordinates = self.coordinates.gsub(")", "")
+      
+      
+      if self.questions.count > 0
+      self.has_survey = 1
+      else
+      self.has_survey = 0
+      end
 
   end
 

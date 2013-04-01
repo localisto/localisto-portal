@@ -55,6 +55,7 @@ def show
     @question = @project.questions.find(params[:id])
    
 
+
  @subnav = [["Back", agency_project_path(@project.agency_id, @project.id), "btn back"], ["Edit Question", edit_project_question_path(@question.project_id, @question)], ["Add Responce", new_question_responce_path(@question.id)], ["Reorder", question_responces_path(@question)], ["Destroy", project_question_path(@question.project_id, @question), "", "", "1"]]
     respond_to do |format|
       format.html # show.html.erb
@@ -69,6 +70,9 @@ def show
     @project = Project.find(params[:project_id])
     @question = @project.questions.new
     @subnav = [['Back', agency_project_path(@project.agency_id, @project), "btn back"]]
+
+
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -88,16 +92,23 @@ def show
   def create
     #@question = Question.new(params[:question])
     @project = Project.find(params[:project_id])
+
     @question = @project.questions.build(params[:question])
 
-      if @question.save
+        if @project.questions.where(:qtype => '3').count >= 1
+          @a = Agency.find(@project.agency_id)
+         redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'You may only have one Pairwise Question per project' and return
+         end 
 
-      if params[:question][:qtype] == '3'
-          redirect_to new_question_aoiquestion_path(@question)
-          
-        else
-        redirect_to project_question_path(@project.id, @question), notice: 'Question was successfully created.' 
-        end
+      if @question.save
+            if params[:question][:qtype] == '3'
+             redirect_to new_question_aoiquestion_path(@question)
+            elsif params[:question][:qtype] == '1'
+              render action: "crop"
+            else
+               redirect_to project_question_path(@project.id, @question.id), notice: 'Question was successfully created. a' 
+      end
+      
       else
 
         redirect_to agency_project_path(@project.agency_id, @project.id), notice: 'Question was NOT successfully created.' 
@@ -109,21 +120,32 @@ def show
   # PUT /questions/1
   # PUT /questions/1.json
   def update
+        @project = Project.find(params[:project_id])
+
     @question = Question.find(params[:id])
 
-    respond_to do |format|
+  
       if @question.update_attributes(params[:question])
-        format.html { redirect_to project_question_path(@question.project_id, @question.id), notice: 'Question was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+         
+          if params[:question][:qtype] == '1'
+           
+              if params[:question][:image].blank?
+                redirect_to project_question_path(@question.project_id, @question.id), notice: 'Question was successfully updated.' 
+              else
+                render action: "crop" and return
+              end
+              
+              #redirect_to(project_question_path(@question.project_id, @question.id)) 
 
-  # DELETE /questions/1
-  # DELETE /questions/1.json
+           end
+     
+        redirect_to project_question_path(@question.project_id, @question.id), notice: 'Question was successfully updated.' and return 
+
+
+end
+ render action: "new" and return
+end
+    
   def destroy
     #@question = Question.find(params[:id])
     #@question.destroy

@@ -1,37 +1,47 @@
 
+
+
+
+<div class="row">
 <div class="span6">
-
-
 <div class="proj">
 <%= image_tag @project.image(:thumb) %>
 
 
 <h1><%= @project.title%></h1>
   
-  <%= @agency.name %>
-  <br>	<br>
-<div class="clear"></div>
-
-<br><br>
-<%= project_published_alert(@project) %>
+ <%= @agency.name %>
 
 
-<p>
-  <%= @project.description %>
-</p>
+</div>
+</div>
 
-<p>
-  <b>Location:</b>
-  <%= @project.location %>
-</p>
+<div class="span6 menu" style="padding-top: 40px;">
+<%= link_to "Edit Project Details", edit_agency_project_path(@agency, :anchor => "name"), :class => "btn btn-small" %>	
+</div>
+</div>
+<hr>
 
-<p>
-  <b>Coordinates:</b>
-  <%= @project.coordinates%>
-</p>
+
+<div class="row">
+	<div class="span6">
+	<%= project_published_alert(@project) %>
+	</div>
+	<div class="span6 menu">
+	<a class="btn btn-small" data-toggle="modal" data-placement="null" data-content="null" href="#publish">Change Publish Status</a>
+	</div>
+	
+</div>
+
+<hr>
+
+<div class="row">
+<div class="span6">
 
 <p>
 <b>Meeting Starts:</b>
+
+
 <% if @project.meeting_starts.nil? %>
 none
 <% else %>
@@ -39,25 +49,125 @@ none
 <% end %>	
 </p>
 
-	
 <p>
 <b>Meeting Display Time:</b>
 <%=  @project.meeting_time%>
 </p>
 
+<p>
+  <b>Location:</b>
+  <%= @project.location %>
+</p>
+
+
+
+
+</div>
+
+<div class="span6 menu">
+<%= link_to "Edit Project Details", edit_agency_project_path(@agency, :anchor => "location"), :class => "btn btn-small" %>	
+</div>
+</div>
+<hr>
+
+
+<div class="row">
+<div class="span6">
+
+<% @images = @project.images.order('project_image.position ASC')%>
+<% if @images.count == 0 %>
+Your project needs some images. <%= link_to "Add an Image", new_project_image_path(@project) %>
+<% else %>
+<%= render 'images/imagecarousel'  %>
+<% end %>
+</div>
+
+<div class="span6 menu">
+<%= link_to "Add Images", new_project_image_path(@project), :class => "btn btn-small" %>	<br>
+<%= link_to "Re-order Images", project_images_path(@project), :class => "btn btn-small" %>	<br>
+<%= link_to "Choose Images To Delete", project_images_path(@project), :class => "btn btn-small" %><br>	
+
+</div>
+</div>
+<hr>
+
+
+
+ <% @questions = @project.questions.order('question.position ASC') %>
+ 
+ 
+ <% if @questions.count > 0 %> 
+ 		<div class="row">
+	 		<div class="span6">
+ 				<% if @project.survey_closes.nil? %>
+ 					You have a survey but you have not set a time to close the survey<br>
+ 					Please set time by clicking here
+ 				<% else %>
+ 					<p><lable>Survey Closes Time</lable>
+ 					<%= l @project.survey_closes, :format => :long %></p>
+ 				<% end %>
+ 			</div>
+
+<div class="span6 menu">
+<%= link_to "Edit Time", surveytime_path(@agency.id, :anchor => "time"), :class => "btn btn-small" %>
+
+</div></div> <hr>
+ <% else %>	
+ 
+ 	<% end %>
+
+
+ <div class="row">
+<div class="span6">
+
+<% if @questions.count > 0 %> 
+<%= render 'questions/questionlist' %>
+<% else %>
+Add some survey questions to your project
+<% end %>
+</div>
+<div class="span6 menu">
+<%= link_to "Add A Survey Question", new_project_question_path(@project), :class => "btn btn-small" %>	<br>
+<%= link_to "Re-order Questions", project_questions_path(@project), :class => "btn btn-small" %>	<br>
+<%= link_to "Choose a Question to Delete", project_questions_path(@project), :class => "btn btn-small" %><br>	
+</div>
+</div>
+<hr>
+
+
+
+<div class="row">
+	<div class="span6">
+	  <%= simple_format(@project.description) %>
+	</div>
+	<div class="span6 menu">
+	  <%= link_to "Edit Project Details", edit_agency_project_path(@agency, :anchor => "description"), :class => "btn btn-small" %>	
+
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="span12">
+
+<div class="alert alert-error deletezone">
+      <h2 class="fleft">Delete Zone</h2>
+      
+      <div class="btn-group fright" style="padding-top: 5px;">
+ 
+     	<%= link_to 'Permanently Delete', agency_project_path(@agency, @project), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></li>
+ </div>
+    <div class="clear"></div>
+</div>
+</div></div>
 
 <p>
-<b>Survey Closes:</b>
-<% if @project.survey_closes.nil? %>
-none
-<% else %>
-<%= l @project.survey_closes, :format => :long %>
-<% end %>	
+
 </p>
-<p>
-<b>Project Has Survey:</b>
+
+
+<!--<b>Project Has Survey:</b>
 <%= @project.has_survey %>
-</p>
+</p> -->
 
 <!-- <b>Url for Facebook:</b>
 <%= @project.fb_page_url%>
@@ -68,22 +178,13 @@ none
 
 
 
-</div></div>
 
-<div class="span6">
 
-<%  @images = @project.images.order('project_image.position ASC')%>
- <%  @questions = @project.questions.order('question.position ASC') %>
-
-<%= render 'images/imagecarousel'  %>
-
-<%= render 'questions/questionlist' %>
-
-</div>
 
   <%= render :partial => "publish" %>
+ 
     <%= render :partial => "archive" %>
-        <%= render :partial => "delete" %>
+    
 
 
 

@@ -100,3 +100,17 @@ box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);}
 .proj h1 {padding-top: 25px;}
 .space {margin-top: 20px;}
 .proj {height: 150px}
+
+
+/*.span6 + .menu  a { color: green;
+    line-height: 28px;
+    margin-left: 42px;}
+    
+    .span6 + .menu  a:hover {background: none}
+    
+    .span6 + .menu {padding-top: 20px;}
+*/
+
+.span6 + .menu a {float: right;  margin-right: 100px;clear:both; width: 200px; margin-bottom: 15px;}
+
+#loading_image {display: none;}

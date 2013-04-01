@@ -1,7 +1,15 @@
-</div>
+<script type="text/javascript" charset="utf-8">
 
+$(function() {
+$('#myform').submit(function() {
+    $('#loading_image').show(); // show animation
+    return true; // allow regular form submission
+});
+});
+</script>
+  
 
-  <%= form_for([@agency,@project]) do |f| %>
+  <%= form_for [@agency,@project], :html => { :id => "myform" } do |f| %>
   <% if @project.errors.any? %>
   <div id="error_explanation">
     <h2><% pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -14,70 +22,115 @@
   </div>
   <% end %>
 
-  <div class="span6">
 
+
+<div  id="name" class="row">
+  <div class="span6">
+<h4> Name your project</h4>
   <div class="field">
-    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <label>Project Info</label>
-    <%= f.text_area :description, :class=>'projdesc' %>
   </div>
-
-  <div class="field">
-    <div class="proj">
-<%= image_tag @project.image(:thumb) %>
-
-
-    <lable>Image for Grid Screen (Size W230 x H246)</lable><br />
-    <%= f.file_field :image %>
-    </div>
-  </div>
-  
-</div>
-
 
 <div class="span6">
-<br><br><br><br>
- <div class="field">
-  <%= f.label :location %>
+<p style="margin-top:20px;"> Choose a short name to identify your project on the Localisto Platform</p>
+</div>
+</div>
+
+<hr>
+
+<div id="mainimage" class="row">
+  <div class="span6">
+<h4> Main Image</h4>
+  
+  <%= image_tag @project.image(:thumb), :width => 150 %>
+  <div class="field">
+     <%= f.file_field :image %>
+  </div>
+  </div>
+
+<div class="span6">
+<p style="margin-top:80px;"> Upload any image to represent your project.  Don't worry about the size or shape. We will help you crop it later! </p>
+</div>
+</div>
+
+<hr>
+
+<div id="location" class="row">
+  <div class="span6">
+<h4>Location, Location, Location</h4>
+  
   <%= f.text_area  :location, :class=>'projloc', :id=>'countMe' %>
   <div class="theCount">Lines used: <span id="linesUsed">0</span> of 3</div>
+  <!-- <div id="map_canvas" style="width: 400px; height: 400px"></div> 
+  <%= f.hidden_field :coordinates, :id => :coordinates %> -->
+  </div>
+
+<div class="span6">
+<p style="margin-top:40px;"> Give us a short description of where your event is happening.  This can be a place like "Townhall" or an  actual street address.  </p>
+<!-- <p style="margin-top:200px;"> Pick exactly where on the map your event is happening. </p> -->
+</div>
 </div>
 
-<br><br>
-<div class="field">
-  <label>Location</label>
-  <%= f.hidden_field :coordinates, :id => :coordinates %>
-</div>
+<hr>
 
-
-<div id="map_canvas" style="width: 400px; height: 400px"></div> 
-
-
-<div class="field">
-  <%= f.label :meeting_starts %>
+<div id="time" class="row">
+  <div class="span6">
+<h4>Time</h4>
+  <div class="field">
+ 
   <%= f.text_field :meeting_starts, :id => "meetingstarts", :value => (f.object.meeting_starts.strftime('%d-%m-%Y %I:%M %p') if f.object.meeting_starts)  %> 
 </div>
+<div class="field" style="margin-top:40px;">
 
-
-<div class="field">
- <label>Meeting Time to be Displayed</label>
  <%= f.text_field :meeting_time %>
 </div>
+ 
+ </div>
+
+<div class="span6">
 
 
-<div class="field">
-  <%= f.label :has_survey %>
-  <%= f.check_box :has_survey %>
+<p style="margin-top:40px;">Enter the exaxt time the meeting starts</p>
+<p style="margin-top:50px;">This is how the meeting start time will read?  You can enter a more formal time like "Monday, March 28th at 8:00pm"  or something less formal like "This Tuesday from 7pm to 9pm"</p>
+</div>
+</div>
+<hr>
+
+<div id="description" class="row">
+  <div class="span6">
+<h4>Project Description</h4>
+ 
+ <div class="field">
+    <%= f.text_area :description, :class=>'projdesc' %>
+  </div>
+ 
+ </div>
+
+<div class="span6">
+<p style="margin-top:200px;">Enter in the information and details here</p>
+
 </div>
 
-<div class="field">
-  <label>Survey Close Time / Sort Time</label>
-  <%# f.datetime_select :survey_closes, :ampm => true, :start_year => 2012, :include_blank => true, :order => [:month, :day, :year]  %> 
-  <%= f.text_field :survey_closes, :id => "surveyclose", :value => (f.object.survey_closes.strftime('%d-%m-%Y %I:%M %p') if f.object.survey_closes)  %>
+
 </div>
+
+<hr>
+
+
+
+ 
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,7 +142,7 @@
 
 
 <div class="field">
-  <%= f.submit :class=>'btn btn-primary' %>
+  <%= f.submit :class=>'btn btn-primary btn-large' %><%= image_tag "loading.gif", :id => "loading_image" %>
 </div>
 <% end %>
 </div>

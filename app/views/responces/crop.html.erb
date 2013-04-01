@@ -1,7 +1,14 @@
 <% content_for(:head) do %>
 <%= stylesheet_link_tag "jcrop/jquery.Jcrop" %>
 <%= javascript_include_tag "jcrop/jquery.Jcrop.min" %>
+
+
+
+
+
+
 <script type="text/javascript" charset="utf-8">
+
 
 $(function() {
 $('#myform').submit(function() {
@@ -10,6 +17,9 @@ $('#myform').submit(function() {
 });
 });
 
+</script>
+
+<script type="text/javascript" charset="utf-8">
 
 $(function() {
 
@@ -17,8 +27,8 @@ $(function() {
   $('#cropbox').Jcrop({
     onChange: update_crop,
     onSelect: update_crop,
-    setSelect: [0, 0, 500, 500],
-    aspectRatio: .9349,
+    setSelect: [0, 0, 700, 700],
+    aspectRatio: 1.42857143,
 
   });
 
@@ -29,12 +39,12 @@ function update_crop(coords) {
   var rx = 230/coords.w;
   var ry = 246/coords.h;
   $('#preview').css({
-    width: Math.round(rx * <%= @project.image_geometry(:large).width %>) + 'px',
-    height: Math.round(ry * <%= @project.image_geometry(:large).height %>) + 'px',
+    width: Math.round(rx * <%= @responce.image_geometry(:large).width %>) + 'px',
+    height: Math.round(ry * <%= @responce.image_geometry(:large).height %>) + 'px',
     marginLeft: '-' + Math.round(rx * coords.x) + 'px',
     marginTop: '-' + Math.round(ry * coords.y) + 'px'
   });
-  var ratio = <%= @project.image_geometry(:original).width %> / <%= @project.image_geometry(:large).width %>;
+  var ratio = <%= @responce.image_geometry(:original).width %> / <%= @responce.image_geometry(:large).width %>;
   $("#crop_x").val(Math.round(coords.x * ratio));
   $("#crop_y").val(Math.round(coords.y * ratio));
   $("#crop_w").val(Math.round(coords.w * ratio));
@@ -47,11 +57,11 @@ function update_crop(coords) {
 <h1> Crop </h1>
 <p> Please crop the image for best results</p>
 
-<%= image_tag @project.image.url(:large), :id => "cropbox" %>
+<%= image_tag @responce.image.url(:large), :id => "cropbox" %>
 
 
 
-<%= form_for ([@agency,@project]), :html => { :id => "myform" } do |f| %>
+<%= form_for ([@question,@responce]), :html => { :id => "myform" } do |f| %>
   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
     <%= f.hidden_field attribute, :id => attribute %>
   <% end %>

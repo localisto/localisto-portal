@@ -1,8 +1,11 @@
 <div class="span6">
-<h1>Reorder Questions</h1>
+<h2>Reorder Questions</h2>
+<p> Drag and drop questions to reorder</p><br>
 <ul class="sorlist" id="questions"> <% @questions.each do |question| %>
-  <li id="question_<%=question.id%>"><span class="handle"><i class="icon-list"></i></span><%=question.description%><%= link_to 'Show', project_question_path(@project.id, question.id) %><%= link_to 'Destroy', project_question_path(@project.id, question.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <li id="question_<%=question.id%>"><span class="handle"><i class="icon-list"></i>  <%=question.description%></span><%= link_to 'Delete Question', project_question_path(@project.id, question.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
 <% end %></ul>
+
+<%= link_to "Done", :back, :class => "btn btn-primary" %>
 
 <script>
 
