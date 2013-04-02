@@ -15,9 +15,10 @@ body { padding: 0px; padding-top: 0px; }
     color: white;
 }
 
-.navbar-inverse .navbar-inner a, .navbar-inverse .navbar-inner li a{
+.navbar-inverse .navbar-inner a, .navbar-inverse .navbar-inner li a {
 	color: white;
 }
+ul.nav li.dropdown ul.dropdown-menu li a {color: #333333;}
 
 div.navbar div.navbar-inner a.brand:hover {
 	background-color: #9BC12B;
@@ -28,4 +29,6 @@ div.navbar div.navbar-inner a.brand:hover {
     border-right-color: #222222;
 }
 
+.caret {color:white;}
 
+h1 {color: #333333;}
