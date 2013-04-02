@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
     :s3_host_alias => 'cdn.localisto.org',
     :url => ':s3_alias_url',
     :path => "/grid_images/:style/:id/:filename",
-    :styles => { :thumb  => '230x246#', :large => '500x500>' },
+    :styles => { :thumb  => '230x246#', :mobile=> '150x150#', :large => '500x500>' },
     :default_style => :original,
     :default_url => 'http://localisto.org/pixel.gif',
     :s3_headers => { 'Expires' => 1.year.from_now.httpdate },

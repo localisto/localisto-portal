@@ -24,7 +24,7 @@ class Question < ActiveRecord::Base
       :s3_host_alias => 'cdn.localisto.org',
       :url => ':s3_alias_urlq',
       :path => "/questions/:style/:id/:filename",
-      :styles => { :thumb  => '500x350#', :large => '700x700>' },
+      :styles => { :thumb  => '150x110#', :mobile  => '500x350#' :large => '700x700>' },
       :default_style => :original,
       :default_url => 'http://localisto.org/pixel.gif',
       :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
