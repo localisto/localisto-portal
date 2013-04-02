@@ -49,12 +49,12 @@ has_attached_file :image,
 
 
   def update_image_field      
- self.image_url = self.image.url
+ self.image_url = self.image.url(:mobile)
   self.save
   end
 
    def update_image_fieldu     
-self.image_url = self.image.url
+self.image_url = self.image.url(:mobile)
 
   end
 end

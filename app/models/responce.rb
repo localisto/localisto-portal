@@ -42,12 +42,12 @@ attr_accessible :question_id, :image, :description, :sort_order, :position, :ima
   end
  
   def update_image_field      
- self.image_url = self.image.url
+ self.image_url = self.image.url(:mobile)
   self.save
   end
 
    def update_image_fieldu     
-self.image_url = self.image.url
+self.image_url = self.image.url(:mobile)
 
   end
 

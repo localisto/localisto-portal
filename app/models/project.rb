@@ -94,12 +94,12 @@ class Project < ActiveRecord::Base
 
 
   def update_image_field
-    self.grid_image = self.image.url(:thumb)
+    self.grid_image = self.image.url(:mobile)
     self.save
   end
 
   def update_image_fieldu
-    self.grid_image = self.image.url(:thumb)
+    self.grid_image = self.image.url(:mobile)
 
   end
 
