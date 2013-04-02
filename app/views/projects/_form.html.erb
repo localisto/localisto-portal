@@ -50,7 +50,7 @@ $('#myform').submit(function() {
   </div>
 
 <div class="span6">
-<p style="margin-top:80px;"> Upload any image to represent your project.  Don't worry about the size or shape. We will help you crop it later! </p>
+<p style="margin-top:80px;"> Upload any image to represent your project.  Don't worry about the size or shape, we will help you crop it later! </p>
 </div>
 </div>
 
@@ -67,7 +67,7 @@ $('#myform').submit(function() {
   </div>
 
 <div class="span6">
-<p style="margin-top:40px;"> Give us a short description of where your event is happening.  This can be a place like "Townhall" or an  actual street address.  </p>
+<p style="margin-top:40px;"> Enter the address where the event is happening.  </p>
 <!-- <p style="margin-top:200px;"> Pick exactly where on the map your event is happening. </p> -->
 </div>
 </div>
@@ -91,8 +91,8 @@ $('#myform').submit(function() {
 <div class="span6">
 
 
-<p style="margin-top:40px;">Enter the exaxt time the meeting starts</p>
-<p style="margin-top:50px;">This is how the meeting start time will read?  You can enter a more formal time like "Monday, March 28th at 8:00pm"  or something less formal like "This Tuesday from 7pm to 9pm"</p>
+<p style="margin-top:40px;">Enter the exaxt time the event starts.</p>
+<p style="margin-top:50px;">This is how the meeting start time will read.  You can enter a more formal time like "Monday, March 28th at 8:00pm" or something less formal like "This Tuesday from 7pm to 9pm"</p>
 </div>
 </div>
 <hr>
@@ -142,7 +142,9 @@ $('#myform').submit(function() {
 
 
 <div class="field">
-  <%= f.submit :class=>'btn btn-primary btn-large' %><%= image_tag "loading.gif", :id => "loading_image" %>
+
+  <%= f.submit :class=>'btn btn-primary btn-large' %><%= image_tag "loading.gif", :id => "loading_image" %> 
+
 </div>
 <% end %>
 </div>

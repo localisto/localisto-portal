@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   before_save :prepare_password
+  before_save :lowercaseloginandemail
 
 
   validates_presence_of :username
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
 
   # login can be either username or email address
   def self.authenticate(login, pass)
-    user = find_by_username(login) || find_by_email(login)
+    user = find_by_username(login.downcase) || find_by_email(login.downcase)
     return user if user && user.password_hash == user.encrypt_password(pass)
   end
 
@@ -37,9 +38,14 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = encrypt_password(password)
     end
+  
+def lowercaseloginandemail
+    self.username = self.username.downcase
+    self.email = self.email.downcase
+
   end
 
-
+end
 
 
 
