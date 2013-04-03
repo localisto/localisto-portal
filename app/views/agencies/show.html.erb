@@ -1,23 +1,53 @@
-
-<div class="span6">
+<div class="row">
+  <div class="span6">
     <h1><%= @agency.name %> </h1>
 
-  <p>
+</div>
 
+<div class="span6 menu">
+<%= link_to "Edit Details", edit_agency_path(@agency), :class => "btn btn-small" %>
+</div>  
+</div>
+<hr>
+
+<div class="row">
+<div class="span6">
 <%= agency_published_alert(@agency) %>
+</div>
+<div class="span6 menu">
+  <% if @agency.user_publish == true %>
+  <a class="btn btn-small" data-toggle="modal" data-placement="null" data-content="null" href="#publish">Change Publish Status</a>
+<% else %>
+  <a id="example" class="btn btn-small" rel="popover" data-toggle="modal" data-placement="bottom"  data-original-title="Agency is Unpublished" data-content="Your agency needs to be published before it will propagate to the Localisto Platform" data-content="null" href="#publish">Change Publish Status</a>
+<% end %>
 
-  <table class="table table-striped">
+
+  
+</div>
+
+</div>
+
+<hr>
+  <div class="row">
+<div class="span6">
+<table class="table table-striped">
     <tr>
       <th>Projects</th>
       <th></th>
     </tr>
     <%= render @agency.projects %>
   </table>
-
-
- </div>
-
 </div>
+
+<div class="span6">
+</div>
+</div>
+
+
+
+  
+
+
 
   <%= render :partial => "publish" %>
     <%= render :partial => "archive" %>

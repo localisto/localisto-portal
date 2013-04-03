@@ -1,4 +1,37 @@
-<center>recent projects for<br><h1><%= @agency.name %></h1></center>
+<style type="text/css">
+	.title { text-align: center; padding-right: 270px}
+.iconbar {float: left; margin-left: 100px; margin-top: 10px; width: 200px;}
+.iconbar a {padding-bottom: 20px; margin-left: 30px;}
+</style>
+
+
+<div clas="row">
+
+	<div class="iconbar">
+
+	<% if @agency.projects.count == 0 %>
+	
+	<%= link_to image_tag("newprojecticon.png"), new_agency_project_path(@agency.id), :id => "example", :rel => "popover", :data => {:content => "Your agency, \"#{@agency.name}\" has no projects. Click the button above to create one.", :placement => "bottom"} %>
+	<%else%>
+    <%= link_to image_tag("newprojecticon.png"), new_agency_project_path(@agency.id), :rel => "tooltip" ,:title => "Create a new project" %>
+	<%end%>
+
+	<%= link_to image_tag("listagencyicon.png"), "#", :rel => "tooltip" ,:title => "View all your agencies" %>
+
+</div>
+
+
+<div class="title">
+<% if @agency.user_publish == false %>
+
+<h2><%= link_to @agency.name, @agency, :id => "example", :rel => "popover", :data => {:content => "Your agency, \"#{@agency.name}\" needs to be published before it will propagate to the Localisto Platform", :placement => "bottom", "original-title" => "Agency is Unpublished"} %></h2>
+<% else %>
+<h2><%= link_to @agency.name, @agency, :rel => "tooltip" ,:title => "Click here to edit details about your agency" %></h2>
+
+<% end %>
+</div>
+
+<!-- <h1><%= @agency.name %> </h1>--></div>
 
 <div class="row-fluid">
 <div class="iconwrap">
@@ -8,9 +41,12 @@
 <% end %>
 </div>
 </div>
-<!-- <div class="linkwrap">more projects..........more agencies</div> -->
+
 </div>
 
 
+<%# link_to anchor, url, :class => cssclass, :rel => rel, :id => id, :data => {:toggle => datatog, :content => dcontent, :placement => place}, "data-original-title" => dtitle%>
+
+<!-- <a id="example" class="" rel="popover" data-toggle="modal" data-placement="bottom" data-original-title="Agency is Unpublished" data-content="Your agency needs to be published before it will propagate to the Localisto Platform" href="#publish">Publish</a> -->
 
 

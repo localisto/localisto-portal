@@ -43,7 +43,7 @@ end
 
   def show
     
-    @right_subnav = [['Publish', '#publish',"","modal" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]
+    @right_subnav = [['Delete', '#delete',"","modal" ]]
     
     if localisto_staff?
         @agency = Agency.find(params[:id])
@@ -63,7 +63,7 @@ end
 
           if @agency.user_publish == false
           #right_subnav with popover to prompt user with that their agency needs to be published 
-          @right_subnav = [['Publish', '#publish',"","modal", "example","Your agency needs to be published before it will propagate to the Localisto Platform","Agency is Unpublished","popover","bottom" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]
+          #@right_subnav = [['Publish', '#publish',"","modal", "example","Your agency needs to be published before it will propagate to the Localisto Platform","Agency is Unpublished","popover","bottom" ],['Archive', '#archive',"","modal" ],['Delete', '#delete',"","modal" ]]
     
 
           else

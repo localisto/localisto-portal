@@ -56,7 +56,7 @@ def show
    
 
 
- @subnav = [["Back", agency_project_path(@project.agency_id, @project.id), "btn back"], ["Edit Question", edit_project_question_path(@question.project_id, @question)], ["Add Responce", new_question_responce_path(@question.id)], ["Reorder", question_responces_path(@question)], ["Destroy", project_question_path(@question.project_id, @question), "", "", "1"]]
+ @subnav = [["Back", :back, "btn back"]]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @question }
