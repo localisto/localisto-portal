@@ -22,6 +22,9 @@ put 'update_profile/:id' => "users#update_profile", :as => 'update_profile'
 match '/adminedit/:id' => 'users#adminedit', :as =>:adminedit
 
 
+#resources :admin
+match '/admin/unpublish' => 'admin#unpublish', :as =>:unpublish
+match '/admin/' => 'admin#index'
 
   resources :sessions
 
