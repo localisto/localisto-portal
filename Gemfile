@@ -13,6 +13,7 @@ gem 'therubyracer'
 gem "jquery-ui-rails", "~> 3.0.1"
 gem 'bootstrap-sass'
   gem "settingslogic", "~> 2.0.9"
+ gem "geocoder"
 
 
 # Gems used only for assets and not required
