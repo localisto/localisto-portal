@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   before_update :check_publish
   before_save :housekeeping
   after_update :reprocess_image, :if => :cropping?
+  after_validation :geocode, :if => :location_changed?
+  before_save :updatecords, :if => :location_changed?
 
 
   has_many :images, :dependent => :destroy
@@ -15,10 +17,12 @@ class Project < ActiveRecord::Base
   belongs_to :agency
 
 
+  geocoded_by :location
+
   validates :title, :presence => true
   validates :image, :presence => true
 
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :latitude, :longitude 
   attr_accessible :agency_id, :title, :description, :location, :coordinates, :survey_closes, :meeting_starts, :has_survey, :fb_page_url, :disabled, :time, :date, :image, :grid_image, :meeting_time, :user_publish, :admin_publish, :archive, :crop_x, :crop_y, :crop_w, :crop_h
 
 
@@ -56,7 +60,15 @@ class Project < ActiveRecord::Base
     image.reprocess!
   end
 
+  def updatecords
+#------ 
+    self.coordinates = self.latitude.to_s + ", " + self.longitude.to_s 
+  end
+
   def housekeeping
+
+
+
 
     # ---  Some charaters such as ’ and — causes the entire block of text on iphone to not show up --- 
     self.description = self.description.gsub("\u2019", "\u0027")

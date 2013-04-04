@@ -53,7 +53,7 @@ function initialize() {
   // create the map
   var myOptions = {
     zoom: 8,
-    center: new google.maps.LatLng(<%= @project.coordinates.blank? ? "47.60292227835496, -122.33345031738281" : @project.coordinates %> ),
+    center: new google.maps.LatLng(<%= @project.coordinates.blank? ? "47.60292227835496, -122.33345031738281" : @project.coordinates %>),
     mapTypeControl: true,
     mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
     navigationControl: true,
