@@ -1,0 +1,44 @@
+<h2>Included by Default Sort Order (<%= @agencies.count %>)</h2>
+
+<table>
+<tr>
+<th>Agency</th>
+<th>Order</th>
+<th>Save</th>
+
+
+</tr>
+
+<% @agencies.each do |a| %>
+<tr>
+	<td><%= link_to a.name, agency_path(a) %> </td>
+	
+
+	<td><%= form_for(a, :html => { :class => "form-inline"}) do |f| %>
+<% if a.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(a.errors.count, "error") %> prohibited this agency from being saved:</h2>
+
+      <ul>
+      <% a.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+		<div class="field">
+    <%= f.text_field :position %>
+   </div></td>
+	<td> <div class="field">
+    <%= f.submit :class=>'btn btn-primary' %>
+  </div>
+
+
+<% end %></td>
+
+</tr>
+
+<%end%>
+
+</table>

@@ -27,6 +27,8 @@ match '/admin/unpublish' => 'admin#unpublish', :as =>:unpublish
 match '/admin/outofdateprojects' => 'admin#outofdateprojects', :as =>:admin_outofdateprojects
 match '/admin/' => 'admin#index'
 match '/admin/unpublishoutofdateprojects' => 'admin#unpublishoutofdateprojects', :as =>:admin_unpublishoutofdateprojects
+match '/admin/editdefaultorder' => 'admin#editdefaultorder', :as =>:admin_editdefaultorder
+match '/admin/allprojectimages' => 'admin#allprojectimages', :as =>:admin_allprojectimages
 
 
 

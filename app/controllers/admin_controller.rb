@@ -52,6 +52,14 @@ end
  redirect_to admin_path, notice: "You have unpublish #{pcount} projects"
 end
 
+def editdefaultorder
+@agencies = Agency.where(:included_by_default => 1)
+end
+
+def allprojectimages
+@projects = Project.all
+end
+
 
 
 
