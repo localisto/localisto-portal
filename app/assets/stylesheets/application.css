@@ -115,5 +115,7 @@ box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, .2);}
 
 #loading_image {display: none;}
 
+#meetingstarts {background-image: url(/assets/cal.png); background-repeat:no-repeat; background-position: top 4px right 10px; cursor: pointer;}
+
 
 

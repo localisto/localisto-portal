@@ -8,9 +8,9 @@
 <%= image_tag @project.image(:thumb) %>
 
 
-<h1><%= @project.title%></h1>
+<h2><%= @project.title%></h2>
   
- <%= @agency.name %>
+ <span style="font-style:italic;">(<%= @agency.name %>)</span>
 
 
 </div>
@@ -27,6 +27,7 @@
 	<div class="span6">
 	<%= project_published_alert(@project) %>
 	</div>
+
 	<div class="span6 menu">
 	<a class="btn btn-small" data-toggle="modal" data-placement="null" data-content="null" href="#publish">Change Publish Status</a>
 	</div>
@@ -54,9 +55,22 @@ none
 <%=  @project.meeting_time%>
 </p>
 
-<p>
+
+
+</div>
+<div class="span6 menu">
+<%= link_to "Edit Project Details", edit_agency_project_path(@agency, :anchor => "location"), :class => "btn btn-small" %>	
+
+
+</div></div>
+
+<hr>
+
+<div class="row">
+<div class="span6">
+	<p>
   <b>Location:</b>
-  <%= @project.location %>
+  <%= @project.location %></p>
 
 <% if @project.coordinates == ", " %>
 <b style="color:red">Your address is invalid, please renter </b>

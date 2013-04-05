@@ -26,14 +26,14 @@ $('#myform').submit(function() {
 
 <div  id="name" class="row">
   <div class="span6">
-<h4> Name your project</h4>
+<h4> Project Title</h4>
   <div class="field">
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :style=>'width: 350px;' %>
   </div>
   </div>
 
 <div class="span6">
-<p style="margin-top:20px;"> Choose a short name to identify your project on the Localisto Platform</p>
+<p style="margin-top:43px;"> Choose a short name to identify your project on the Localisto Platform</p>
 </div>
 </div>
 
@@ -55,25 +55,6 @@ $('#myform').submit(function() {
 </div>
 
 <hr>
-
-<div id="location" class="row">
-  <div class="span6">
-<h4>Address</h4>
-  
-  <%= f.text_area  :location, :class=>'projloc', :id=>'countMe' %>
-  <div class="theCount">Lines used: <span id="linesUsed">0</span> of 3</div>
-  <!-- <div id="map_canvas" style="width: 400px; height: 400px"></div> 
-  <%# f.hidden_field :coordinates, :id => :coordinates %> 
-  </div> -->
-
-<div class="span6">
-<p style="margin-top:40px;"> Enter the address where the event is happening.  </p>
-<!--<p style="margin-top:200px;"> Pick exactly where on the map your event is happening. </p>  -->
-</div>
-</div>
-
-<hr>
-
 <div id="time" class="row">
   <div class="span6">
 <h4>Time</h4>
@@ -83,7 +64,7 @@ $('#myform').submit(function() {
 </div>
 <div class="field" style="margin-top:40px;">
 
- <%= f.text_field :meeting_time %>
+ <%= f.text_field :meeting_time, :style=>'width: 350px;' %>
 </div>
  
  </div>
@@ -97,12 +78,32 @@ $('#myform').submit(function() {
 </div>
 <hr>
 
+<div id="location" class="row">
+  <div class="span6">
+<h4>Address</h4>
+  
+  <%= f.text_area  :location, :class=>'projloc', :id=>'countMe', :style=>'width: 350px;' %>
+  <div class="theCount">Lines used: <span id="linesUsed">0</span> of 3</div>
+  <!-- <div id="map_canvas" style="width: 400px; height: 400px"></div> 
+  <%# f.hidden_field :coordinates, :id => :coordinates %> -->
+  </div> 
+
+<div class="span6">
+<p style="margin-top:40px;"> Enter the address where the event is happening.  </p>
+<!--<p style="margin-top:200px;"> Pick exactly where on the map your event is happening. </p>  -->
+</div>
+</div>
+
+<hr>
+
+
+
 <div id="description" class="row">
   <div class="span6">
 <h4>Project Description</h4>
  
  <div class="field">
-    <%= f.text_area :description, :class=>'projdesc' %>
+    <%= f.text_area :description, :class=>'projdesc', :style=>'width: 350px;' %>
   </div>
  
  </div>

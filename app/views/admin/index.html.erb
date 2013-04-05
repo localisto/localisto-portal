@@ -1,10 +1,33 @@
 <div class="row">
 	<div class="span3">
 		
-<%= link_to 'Clean up unpublished', unpublish_path, :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Clean up unpublished', unpublish_path, :class => "btn btn-danger", data: { confirm: 'Are you sure you know what you are doing?' } %>
 	</div>
 	<div class="span4">
 		<p>"Clean up unpublished" will unpublish all projects from which their parent agency is not published</p>
+	</div>
+
+
+</div>
+<hr>
+<div class="row">
+	<div class="span3">
+		
+<%= link_to 'View all Unpublish all out of date projects', admin_outofdateprojects_path, :class => "btn btn-primary"%>
+	</div>
+	<div class="span4">
+		<p>Any project with a date older than today will be unpublished</p>
+	</div>
+</div>
+
+<hr>
+<div class="row">
+	<div class="span3">
+		
+<%= link_to 'Unpublish all out of date projects', admin_unpublishoutofdateprojects_path, :class => "btn btn-danger", data: { confirm: 'This could cause a rip in the time space contium? Would you be ok with that' } %>
+	</div>
+	<div class="span4">
+		<p>Any project with a date older than today will be unpublished</p>
 	</div>
 
 

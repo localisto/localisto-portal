@@ -24,7 +24,14 @@ match '/adminedit/:id' => 'users#adminedit', :as =>:adminedit
 
 #resources :admin
 match '/admin/unpublish' => 'admin#unpublish', :as =>:unpublish
+match '/admin/outofdateprojects' => 'admin#outofdateprojects', :as =>:admin_outofdateprojects
 match '/admin/' => 'admin#index'
+match '/admin/unpublishoutofdateprojects' => 'admin#unpublishoutofdateprojects', :as =>:admin_unpublishoutofdateprojects
+
+
+
+
+
 
   resources :sessions
 

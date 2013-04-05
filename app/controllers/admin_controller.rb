@@ -35,5 +35,24 @@ def unpublish
 	redirect_to admin_path, notice: "Its done"
 end
 
+def outofdateprojects
+@projects = Project.find(:all, :conditions => ["meeting_starts < ? AND disabled = ?", 1.days.ago, 0])
+
+end
+
+def unpublishoutofdateprojects
+@projects = Project.find(:all, :conditions => ["meeting_starts < ? AND disabled = ?", 1.days.ago, 0])
+
+pcount = @projects.count
+ @projects.each do |p|
+ 	p.user_publish = 0
+ 	p.admin_publish = 0
+ 	p.save
+end
+ redirect_to admin_path, notice: "You have unpublish #{pcount} projects"
+end
+
+
+
 
 end

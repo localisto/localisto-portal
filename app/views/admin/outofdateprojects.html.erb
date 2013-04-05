@@ -1,0 +1,25 @@
+
+
+<h2>Out of Date Projects (<%= @projects.count %>)</h2>
+
+<table>
+<tr>
+<th>Project</th>
+<th>Meeting Time</th>
+<th>Survey Time</th>
+<th>Delete</th>
+
+</tr>
+
+<% @projects.each do |p| %>
+<tr>
+	<td><%= link_to p.title, agency_project_path(p.agency_id, p.id) %> </td>
+	<td><%= p.meeting_starts %></td>
+	<td><%= p.survey_closes%></td>
+	<td><%= (Time.zone.now - p.meeting_starts)/3600/24%></td>
+</tr>
+
+<%end%>
+
+</table>
+
