@@ -46,7 +46,7 @@ def unpublishoutofdateprojects
 pcount = @projects.count
  @projects.each do |p|
  	p.user_publish = 0
- 	p.admin_publish = 0
+
  	p.save
 end
  redirect_to admin_path, notice: "You have unpublish #{pcount} projects"
