@@ -3,29 +3,32 @@
 
 <table>
 <tr>
-<th>Project</th>
+
 <th>orignal</th>
 <th>mobile</th>
 <th>thumb</th>
+<th>Project</th>
 
 
 </tr>
 
 <% @projects.each do |p| %>
 <tr>
-	<td><%= link_to p.title, agency_project_path(p.agency_id, p.id) %> </td>
+	
 	<td><%= link_to "original", p.image.url(:original) %></td>
 	<td><%= link_to "mobile", p.image.url(:mobile) %></td>
 	<td><%= link_to "thumb", p.image.url(:thumb) %></td>
+	<td><%= link_to p.title, agency_project_path(p.agency_id, p.id) %> </td>
 
 </tr>
 <% p.images.each do |i| %>
 <tr >
-  <td style="padding-left: 20px">Project Image</td>
+  
 
     <td><%= link_to "original", i.image.url(:original) %></td>
 	<td><%= link_to "mobile", i.image.url(:mobile) %></td>
 	<td><%= link_to "thumb", i.image.url(:thumb) %></td>
+	<td style="padding-left: 20px">Project Image</td>
 </tr>
 <%end%>
 <%end%>
